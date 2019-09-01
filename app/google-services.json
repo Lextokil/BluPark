@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "762170137956",
+    "firebase_url": "https://blupark-f7456.firebaseio.com",
+    "project_id": "blupark-f7456",
+    "storage_bucket": "blupark-f7456.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762170137956:android:3ce55973e9fb881d",
+        "android_client_info": {
+          "package_name": "com.android.blupark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762170137956-u2eb2orn72jm8jqgi7ijene9tmsdnf7h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.blupark",
+            "certificate_hash": "fcec67322f9db14ed2630a7b546d7532e7464564"
+          }
+        },
+        {
+          "client_id": "762170137956-1nc1b14pjj7ag7dq6mopf6i098925tht.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBJLTqNU4sGtbJJiFRkOMWyCzdu1qhQ2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762170137956-1nc1b14pjj7ag7dq6mopf6i098925tht.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
