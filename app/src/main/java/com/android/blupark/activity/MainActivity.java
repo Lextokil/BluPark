@@ -1,6 +1,7 @@
 package com.android.blupark.activity;
 import com.android.blupark.R;
 import com.android.blupark.helper.UsuarioFireBase;
+import com.android.blupark.model.Veiculo;
 import com.google.firebase.auth.FirebaseUser;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getSupportActionBar().hide();
+
     }
 
     public void abrirTelaLogin(View view){

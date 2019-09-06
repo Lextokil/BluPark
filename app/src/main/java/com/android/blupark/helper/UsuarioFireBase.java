@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.android.blupark.activity.CadastroVeiculoActivity;
 import com.android.blupark.activity.DashBoardActivity;
 import com.android.blupark.config.ConfiguracaoFireBase;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -44,6 +45,11 @@ public class UsuarioFireBase {
 
     public static void toDashBoardActivity(final Activity activity){
         Intent i = new Intent(activity, DashBoardActivity.class);
+        activity.startActivity(i);
+    }
+
+    public static void toCadastroVeiculoActivity(final Activity activity){
+        Intent i = new Intent(activity, CadastroVeiculoActivity.class);
         activity.startActivity(i);
     }
 
