@@ -6,11 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".activity.DashBoardActivity">
 
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:id="@+id/btnIncluirVeiculo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="COEEEE"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="150dp" />
+        android:layout_weight="1"
+        android:drawableTop="@drawable/iconplus"
+        android:text="Incluir Veiculo"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Veiculos - Acesso Rápido"
+        android:textAlignment="center"
+        android:textColor="#686666"
+        android:textSize="26sp"
+        tools:layout_editor_absoluteY="391dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

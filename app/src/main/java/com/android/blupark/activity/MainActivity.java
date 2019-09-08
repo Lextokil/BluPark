@@ -1,14 +1,13 @@
 package com.android.blupark.activity;
-import com.android.blupark.R;
-import com.android.blupark.helper.UsuarioFireBase;
-import com.android.blupark.model.Veiculo;
-import com.google.firebase.auth.FirebaseUser;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.blupark.R;
+import com.android.blupark.helper.UsuarioFireBase;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getSupportActionBar().hide();
+
 
     }
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser user = UsuarioFireBase.getUsuarioAtual();
         if (user != null){
-           // UsuarioFireBase.toDashBoardActivity(this);
+          //  UsuarioFireBase.toDashBoardActivity(this);
         }
 
     }

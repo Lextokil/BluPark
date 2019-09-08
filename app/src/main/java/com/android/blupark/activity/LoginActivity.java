@@ -1,4 +1,12 @@
 package com.android.blupark.activity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.blupark.R;
 import com.android.blupark.config.ConfiguracaoFireBase;
 import com.android.blupark.helper.UsuarioFireBase;
@@ -10,13 +18,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
     private TextInputEditText campoEmail, campoSenha;
@@ -63,8 +64,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    //UsuarioFireBase.toDashBoardActivity(LoginActivity.this);
-                    UsuarioFireBase.toCadastroVeiculoActivity(LoginActivity.this);
+                     UsuarioFireBase.toDashBoardActivity(LoginActivity.this);
+                     UsuarioFireBase.toCadastroVeiculoActivity(LoginActivity.this);
 
                 }else {
                     String excecao = "";
