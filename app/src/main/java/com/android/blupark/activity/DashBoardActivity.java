@@ -41,6 +41,7 @@ public class DashBoardActivity extends AppCompatActivity {
 
 
 
+
     }
 
     @Override
@@ -53,13 +54,16 @@ public class DashBoardActivity extends AppCompatActivity {
         String usuarioId;
         usuarioId = UsuarioFireBase.getIDUsuarioAtual();
 
-       // veiculosRef.child("veiculos").child(usuarioId);
         FirebaseDatabase.getInstance().getReference("veiculos").child(usuarioId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dados: dataSnapshot.getChildren()){
                     Log.i("dados", "Retorno "+ dados.toString());
+                    Veiculo veiculo = dados.getValue(Veiculo.class);
+                    veiculos.add(veiculo);
+
                 }
+                Log.i("Veiculos", "1 Index Array : "+ veiculos.get(1));
             }
 
             @Override
