@@ -8,6 +8,7 @@ public class ConfiguracaoFireBase {
     private static DatabaseReference database;
     private static FirebaseAuth auth;
 
+
     //Retorna instancia do FirebaseDataBase
     public static DatabaseReference getFireBaseDataBase(){
         if (database == null){
@@ -22,5 +23,9 @@ public class ConfiguracaoFireBase {
             auth = FirebaseAuth.getInstance();
         }
         return auth;
+    }
+
+    public static void PersistirDados(){
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
     }
 }

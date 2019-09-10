@@ -12,19 +12,35 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:drawableTop="@drawable/iconplus"
+        android:onClick="ToCadastroVeiculos"
         android:text="Incluir Veiculo"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="@+id/textTickets"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btnComprarTickets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/iconplus"
+        android:onClick="ToCompraTickesActivity"
+        android:text="Comprar Tickets"
+        app:layout_constraintBottom_toBottomOf="@+id/textTickets"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.134" />
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textTickets"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Veiculos - Acesso Rápido"
+        android:text="Tickets disponíveis : 0"
         android:textAlignment="center"
-        android:textColor="#686666"
+        android:textColor="#030303"
         android:textSize="26sp"
         tools:layout_editor_absoluteY="391dp" />
 
