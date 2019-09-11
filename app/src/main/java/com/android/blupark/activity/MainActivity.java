@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.blupark.R;
-import com.android.blupark.helper.UsuarioFireBase;
+import com.android.blupark.helper.UsuarioHelper;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,10 +32,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser user = UsuarioFireBase.getUsuarioAtual();
+
+        FirebaseUser user = UsuarioHelper.getUsuarioAtual();
         if (user != null){
-          //  UsuarioFireBase.toDashBoardActivity(this);
+             UsuarioHelper.toDashBoardActivity(this);
+             //UsuarioHelper.toCompraTicketsActivity(this);
+
+
         }
 
     }
+
+
 }

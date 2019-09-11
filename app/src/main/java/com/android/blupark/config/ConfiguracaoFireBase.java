@@ -5,8 +5,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class ConfiguracaoFireBase {
+
     private static DatabaseReference database;
     private static FirebaseAuth auth;
+
 
     //Retorna instancia do FirebaseDataBase
     public static DatabaseReference getFireBaseDataBase(){
@@ -22,5 +24,9 @@ public class ConfiguracaoFireBase {
             auth = FirebaseAuth.getInstance();
         }
         return auth;
+    }
+
+    public static void PersistirDados(){
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
     }
 }
