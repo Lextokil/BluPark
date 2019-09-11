@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.blupark.R;
-import com.android.blupark.helper.UsuarioFireBase;
+import com.android.blupark.helper.UsuarioHelper;
 
 public class CompraTicketsActivity extends AppCompatActivity {
     Button btn10, btn50,btn100,btnConfirm;
@@ -41,11 +41,11 @@ public class CompraTicketsActivity extends AppCompatActivity {
     }
 
     public void confirmarCompra(View view){
-        UsuarioFireBase.addTicketUsuarioAtual(ticketsTemp);
+        UsuarioHelper.addTicketUsuarioAtual(ticketsTemp);
         Toast.makeText(CompraTicketsActivity.this,
                 "Compra realizada com sucesso!",
                 Toast.LENGTH_LONG).show();
-        UsuarioFireBase.toDashBoardActivity(this);
+        UsuarioHelper.toDashBoardActivity(this);
     }
 
 }

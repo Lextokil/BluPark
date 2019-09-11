@@ -1,7 +1,7 @@
 package com.android.blupark.model;
 
 import com.android.blupark.config.ConfiguracaoFireBase;
-import com.android.blupark.helper.UsuarioFireBase;
+import com.android.blupark.helper.UsuarioHelper;
 import com.google.firebase.database.DatabaseReference;
 
 public class Veiculo {
@@ -17,7 +17,7 @@ public class Veiculo {
     public void salvarVeiculo(){
 
         DatabaseReference firebaseRef = ConfiguracaoFireBase.getFireBaseDataBase();
-        DatabaseReference veiculos = firebaseRef.child("veiculos").child(UsuarioFireBase.getIDUsuarioAtual()).push();
+        DatabaseReference veiculos = firebaseRef.child("veiculos").child(UsuarioHelper.getIDUsuarioAtual()).push();
         veiculos.setValue(this);
     }
 

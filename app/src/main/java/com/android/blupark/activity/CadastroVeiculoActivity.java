@@ -1,12 +1,11 @@
 package com.android.blupark.activity;
 import com.android.blupark.R;
-import com.android.blupark.helper.UsuarioFireBase;
+import com.android.blupark.helper.UsuarioHelper;
 import com.android.blupark.model.Veiculo;
 import com.google.android.material.textfield.TextInputEditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -48,7 +47,7 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
                         veiculo.setModelo(textModelo);
                         veiculo.setTipo(tipo);
                         veiculo.salvarVeiculo();
-                        UsuarioFireBase.toDashBoardActivity(CadastroVeiculoActivity.this);
+                        UsuarioHelper.toDashBoardActivity(CadastroVeiculoActivity.this);
                         Toast.makeText(CadastroVeiculoActivity.this,
                                 "Veículo cadastrado com sucesso!",
                                 Toast.LENGTH_LONG).show();

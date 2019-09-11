@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.blupark.R;
 import com.android.blupark.config.ConfiguracaoFireBase;
-import com.android.blupark.helper.UsuarioFireBase;
+import com.android.blupark.helper.UsuarioHelper;
 import com.android.blupark.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -64,8 +64,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                     UsuarioFireBase.toDashBoardActivity(LoginActivity.this);
-                     //UsuarioFireBase.toCadastroVeiculoActivity(LoginActivity.this);
+                     UsuarioHelper.toDashBoardActivity(LoginActivity.this);
+                     //UsuarioHelper.toCadastroVeiculoActivity(LoginActivity.this);
 
                 }else {
                     String excecao = "";

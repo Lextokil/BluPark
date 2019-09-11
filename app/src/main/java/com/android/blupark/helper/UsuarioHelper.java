@@ -6,10 +6,12 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.android.blupark.activity.AtivarTicketActivity;
 import com.android.blupark.activity.CadastroVeiculoActivity;
 import com.android.blupark.activity.CompraTicketsActivity;
 import com.android.blupark.activity.DashBoardActivity;
 import com.android.blupark.config.ConfiguracaoFireBase;
+import com.android.blupark.model.Veiculo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,10 +23,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class UsuarioFireBase {
+public class UsuarioHelper {
+
+    public static boolean isTicketAtivo = false;
+    public static Veiculo veiculo;
 
 
-   public static FirebaseUser getUsuarioAtual(){
+
+    public static FirebaseUser getUsuarioAtual(){
         FirebaseAuth usuario = ConfiguracaoFireBase.getFireBaseAutenticacao();
         return usuario.getCurrentUser();
     }
@@ -61,6 +67,10 @@ public class UsuarioFireBase {
     }
     public static void toCompraTicketsActivity(final Activity activity){
         Intent i = new Intent(activity, CompraTicketsActivity.class);
+        activity.startActivity(i);
+    }
+    public static void toAtivarTicketsActivity(final Activity activity){
+        Intent i = new Intent(activity, AtivarTicketActivity.class);
         activity.startActivity(i);
     }
 

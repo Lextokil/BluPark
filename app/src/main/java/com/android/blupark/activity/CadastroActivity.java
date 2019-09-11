@@ -1,7 +1,7 @@
 package com.android.blupark.activity;
 import com.android.blupark.R;
 import com.android.blupark.config.ConfiguracaoFireBase;
-import com.android.blupark.helper.UsuarioFireBase;
+import com.android.blupark.helper.UsuarioHelper;
 import com.android.blupark.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -14,17 +14,10 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.Toast;
-
-
-import java.security.spec.ECField;
-import java.util.Calendar;
 
 public class CadastroActivity extends AppCompatActivity {
     private TextInputEditText campoNome, campoEmail, campoSenha, confirmarSenha;
@@ -104,7 +97,7 @@ public class CadastroActivity extends AppCompatActivity {
                        usuario.salvar();
 
                        //Atualizar nome  no UserProfile
-                       UsuarioFireBase.atualizarNomeUsuario(usuario.getNome());
+                       UsuarioHelper.atualizarNomeUsuario(usuario.getNome());
 
                        startActivity(new Intent(CadastroActivity.this,LoginActivity.class));
                        finish();

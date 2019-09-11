@@ -5,6 +5,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class ConfiguracaoFireBase {
+
     private static DatabaseReference database;
     private static FirebaseAuth auth;
 
