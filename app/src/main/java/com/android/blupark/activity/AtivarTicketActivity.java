@@ -1,5 +1,6 @@
 package com.android.blupark.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +43,13 @@ public class AtivarTicketActivity extends AppCompatActivity {
         veiculoDoTicket.setTipo("TicketTipo");
         veiculoDoTicket.setModelo("ModeloTip");
         UsuarioHelper.veiculo = veiculoDoTicket;
+
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putLong("millisLeft",30000);
+        editor.putBoolean("timerRunning", UsuarioHelper.isTicketAtivo);
+        editor.putLong("endTime",(System.currentTimeMillis() + 30000));
+        editor.apply();
         UsuarioHelper.toDashBoardActivity(AtivarTicketActivity.this);
     }
 

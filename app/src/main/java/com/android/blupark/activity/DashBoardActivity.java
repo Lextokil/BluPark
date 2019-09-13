@@ -1,5 +1,6 @@
 package com.android.blupark.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -28,7 +29,7 @@ public class DashBoardActivity extends AppCompatActivity {
 
     private static final long START_TIME_IN_MILLIS = 30000;
     private CountDownTimer mCountDownTimer;
-    private boolean timerIsRunning;
+    private boolean mTimerRunning;
     private long mTimeLeftMillis = START_TIME_IN_MILLIS;
     private long mEndTime;
 
@@ -65,23 +66,11 @@ public class DashBoardActivity extends AppCompatActivity {
             }
         });
 
+        ticketsLayout.setVisibility(View.INVISIBLE);
+        isTicketActive();
 
     }
 
-
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        /*SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putLong("millisLeft",mTimeLeftMillis);
-        editor.putBoolean("timerRunning", timerIsRunning);
-        editor.putLong("endTime",mEndTime);
-
-        editor.apply();
-        mCountDownTimer.cancel();*/
-    }
 
 
     @Override
@@ -89,26 +78,24 @@ public class DashBoardActivity extends AppCompatActivity {
         super.onStart();
         GetVeiculos();
         GetTickets();
-        ticketsLayout.setVisibility(View.INVISIBLE);
-        isTicketActive();
-       /* SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         mTimeLeftMillis = prefs.getLong("millisLeft", START_TIME_IN_MILLIS);
-        timerIsRunning = prefs.getBoolean("timerRunning", false);
-        isTicketActive();
-
-        if(timerIsRunning){
+        mTimerRunning = prefs.getBoolean("timerRunning", false);
+        UsuarioHelper.isTicketAtivo = mTimerRunning;
+        if(mTimerRunning){
             mEndTime = prefs.getLong("endTime", 0);
             mTimeLeftMillis = mEndTime - System.currentTimeMillis();
-
             if(mTimeLeftMillis < 0){
                 mTimeLeftMillis = 0;
-                timerIsRunning = false;
+                mTimerRunning = false;
+                UsuarioHelper.isTicketAtivo = mTimerRunning;
                 updateTempoTicket();
 
             }else{
                 startTimer();
             }
-        }*/
+        }
+        isTicketActive();
     }
 
     @Override
@@ -122,14 +109,14 @@ public class DashBoardActivity extends AppCompatActivity {
         if (usuarioRef != null && valueEventListenerVeiculos != null) {
             usuarioRef.removeEventListener(valueEventListenerVeiculos);
         }
-        /*SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putLong("millisLeft",mTimeLeftMillis);
-        editor.putBoolean("timerRunning", timerIsRunning);
+        editor.putBoolean("timerRunning", mTimerRunning);
         editor.putLong("endTime",mEndTime);
 
         editor.apply();
-        mCountDownTimer.cancel();*/
+        //mCountDownTimer.cancel();
 
     }
 
@@ -198,26 +185,28 @@ public class DashBoardActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                timerIsRunning = false;
-                UsuarioHelper.isTicketAtivo = false;
+                mTimerRunning = false;
+                UsuarioHelper.isTicketAtivo = mTimerRunning;
                 isTicketActive();
             }
         }.start();
-        timerIsRunning = true;
+        mTimerRunning = true;
+
     }
 
 
     private void pauseTimer(){
         mCountDownTimer.cancel();
-        timerIsRunning = false;
+        mTimerRunning = false;
 
     }
 
     private void resetTimer(){
-        timerIsRunning = false;
+        mTimerRunning = false;
         mTimeLeftMillis = START_TIME_IN_MILLIS;
+        UsuarioHelper.isTicketAtivo = mTimerRunning;
         updateTempoTicket();
-        UsuarioHelper.isTicketAtivo = false;
+
 
 
 
@@ -237,7 +226,7 @@ public class DashBoardActivity extends AppCompatActivity {
             startTimer();
         }else{
             ticketsLayout.setVisibility(View.INVISIBLE);
-          //  resetTimer();
+
         }
     }
 
