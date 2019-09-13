@@ -3,16 +3,21 @@ package com.android.blupark.activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.blupark.R;
 import com.android.blupark.helper.UsuarioHelper;
+import com.android.blupark.model.Usuario;
 import com.android.blupark.model.Veiculo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -77,6 +82,7 @@ public class DashBoardActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         GetVeiculos();
+
         GetTickets();
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         mTimeLeftMillis = prefs.getLong("millisLeft", START_TIME_IN_MILLIS);
@@ -94,8 +100,7 @@ public class DashBoardActivity extends AppCompatActivity {
             }else{
                 startTimer();
             }
-        }
-        isTicketActive();
+
     }
 
     @Override
@@ -116,7 +121,7 @@ public class DashBoardActivity extends AppCompatActivity {
         editor.putLong("endTime",mEndTime);
 
         editor.apply();
-        //mCountDownTimer.cancel();
+
 
     }
 
@@ -126,7 +131,8 @@ public class DashBoardActivity extends AppCompatActivity {
         usuarioId = UsuarioHelper.getIDUsuarioAtual();
 
 
-       /* veiculosRef.child(usuarioId).addValueEventListener(new ValueEventListener() {
+        veiculosRef.child(usuarioId).addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dados: dataSnapshot.getChildren()){
@@ -134,20 +140,21 @@ public class DashBoardActivity extends AppCompatActivity {
                     Veiculo veiculo = dados.getValue(Veiculo.class);
                     veiculos.add(veiculo);
                 }
+                Log.i("Veiculos", "1 Index Array : "+ veiculos.get(1));
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });*/
+        });
 
     }
 
     //Atualiza a quantidade de tickets disponíveis do usuario
     public void GetTickets(){
 
-       /* usuarioRef.child(UsuarioHelper.getIDUsuarioAtual()).addValueEventListener(new ValueEventListener() {
+         usuarioRef.child(UsuarioHelper.getIDUsuarioAtual()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Usuario usuario = dataSnapshot.getValue(Usuario.class);
@@ -160,7 +167,7 @@ public class DashBoardActivity extends AppCompatActivity {
 
             }
 
-        });*/
+        });
 
     }
 
