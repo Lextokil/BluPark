@@ -23,10 +23,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class UsuarioHelper {
 
     public static boolean isTicketAtivo = false;
     public static Veiculo veiculo;
+    public static ArrayList<Veiculo> veiculos = new ArrayList<>();
 
 
 

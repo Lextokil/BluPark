@@ -46,9 +46,10 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putLong("millisLeft",30000);
+        editor.clear();
+        editor.putLong("millisLeft",60000);
         editor.putBoolean("timerRunning", UsuarioHelper.isTicketAtivo);
-        editor.putLong("endTime",(System.currentTimeMillis() + 30000));
+        editor.putLong("endTime",(System.currentTimeMillis() + 60000));
         editor.apply();
         UsuarioHelper.toDashBoardActivity(AtivarTicketActivity.this);
     }

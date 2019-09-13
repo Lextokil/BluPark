@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText campoEmail, campoSenha;
     private FirebaseAuth autenticacao;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

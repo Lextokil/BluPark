@@ -27,12 +27,12 @@ import java.util.Locale;
 
 public class DashBoardActivity extends AppCompatActivity {
     private LinearLayout layoutCarros;
-    private ArrayList<Veiculo> veiculos = new ArrayList<>();
+
     private DatabaseReference veiculosRef = FirebaseDatabase.getInstance().getReference("veiculos");
     private DatabaseReference usuarioRef = FirebaseDatabase.getInstance().getReference("usuarios");
     private ValueEventListener valueEventListenerVeiculos;
 
-    private static final long START_TIME_IN_MILLIS = 30000;
+    private static final long START_TIME_IN_MILLIS = 60000;
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning;
     private long mTimeLeftMillis = START_TIME_IN_MILLIS;
@@ -103,6 +103,7 @@ public class DashBoardActivity extends AppCompatActivity {
             }
 
         }
+        isTicketActive();
     }
 
     @Override
@@ -118,6 +119,7 @@ public class DashBoardActivity extends AppCompatActivity {
         }
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();
         editor.putLong("millisLeft",mTimeLeftMillis);
         editor.putBoolean("timerRunning", mTimerRunning);
         editor.putLong("endTime",mEndTime);
@@ -140,9 +142,9 @@ public class DashBoardActivity extends AppCompatActivity {
                 for (DataSnapshot dados: dataSnapshot.getChildren()){
                     Log.i("dados", "Retorno "+ dados.toString());
                     Veiculo veiculo = dados.getValue(Veiculo.class);
-                    veiculos.add(veiculo);
+                    UsuarioHelper.veiculos.add(veiculo);
                 }
-                Log.i("Veiculos", "1 Index Array : "+ veiculos.get(1));
+                Log.i("Veiculos", "1 Index Array : "+ UsuarioHelper.veiculos.get(1));
             }
 
             @Override
@@ -160,6 +162,7 @@ public class DashBoardActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Usuario usuario = dataSnapshot.getValue(Usuario.class);
+
 
                 qtdTickets.setText("Tickets disponíveis: "+ usuario.getQtdTickets());
             }
