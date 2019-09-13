@@ -67,6 +67,7 @@ public class DashBoardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 resetTimer();
+
                 isTicketActive();
             }
         });
@@ -101,6 +102,7 @@ public class DashBoardActivity extends AppCompatActivity {
                 startTimer();
             }
 
+        }
     }
 
     @Override
