@@ -132,7 +132,7 @@ public class DashBoardActivity extends AppCompatActivity {
     //Pega os veiculos que o usuario tem cadastrado
     public void GetVeiculos(){
         String usuarioId;
-      /*  usuarioId = UsuarioHelper.getIDUsuarioAtual();
+        usuarioId = UsuarioHelper.getIDUsuarioAtual();
 
 
         veiculosRef.child(usuarioId).addValueEventListener(new ValueEventListener() {
@@ -151,7 +151,7 @@ public class DashBoardActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });*/
+        });
 
     }
 

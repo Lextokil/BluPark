@@ -10,6 +10,7 @@ import com.android.blupark.activity.AtivarTicketActivity;
 import com.android.blupark.activity.CadastroVeiculoActivity;
 import com.android.blupark.activity.CompraTicketsActivity;
 import com.android.blupark.activity.DashBoardActivity;
+import com.android.blupark.activity.VeiculosCadastrados;
 import com.android.blupark.config.ConfiguracaoFireBase;
 import com.android.blupark.model.Veiculo;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.core.view.View;
 
 import java.util.ArrayList;
 
@@ -74,6 +76,11 @@ public class UsuarioHelper {
     }
     public static void toAtivarTicketsActivity(final Activity activity){
         Intent i = new Intent(activity, AtivarTicketActivity.class);
+        activity.startActivity(i);
+    }
+    //veículos teste
+    public static void toVeiculosCadastrados(final Activity activity){
+        Intent i = new Intent(activity, VeiculosCadastrados.class);
         activity.startActivity(i);
     }
 

@@ -3,9 +3,12 @@ import com.android.blupark.R;
 import com.android.blupark.helper.UsuarioHelper;
 import com.android.blupark.model.Veiculo;
 import com.google.android.material.textfield.TextInputEditText;
+import com.android.blupark.activity.VeiculosCadastrados;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +17,7 @@ import android.widget.Toast;
 public class CadastroVeiculoActivity extends AppCompatActivity {
     private TextInputEditText campoPlaca, campoModelo;
 
-    private Button btnCarro, btnMoto, btnOnibus, btnCaminhao;
+    private Button btnCarro, btnMoto, btnOnibus, btnCaminhao, btnVeiculosCadastrados;
     private Veiculo veiculo;
     private String tipo;
 
@@ -30,8 +33,15 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
         btnMoto = findViewById(R.id.btnMoto);
         btnOnibus = findViewById(R.id.btnOnibus);
         btnCaminhao = findViewById(R.id.btnCaminhao);
+        btnVeiculosCadastrados = findViewById(R.id.btnVeiculosCadastrados);
 
     }
+
+    public void toVeiculosCadastrados (Activity activity, android.view.View view){
+        Intent i = new Intent(activity, VeiculosCadastrados.class);
+        activity.startActivity(i);
+    }
+
 
     public void salvarVeiculo(View view){
         String textPlaca = campoPlaca.getText().toString();
@@ -90,6 +100,7 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
         }
         return tipo;
     }
+
 
 
 }
