@@ -10,7 +10,6 @@
         android:id="@+id/btnIncluirVeiculos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:layout_weight="1"
         android:drawableTop="@drawable/iconplus"
         android:onClick="ToCadastroVeiculos"
@@ -24,24 +23,24 @@
         android:id="@+id/btnComprarTickets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="68dp"
         android:layout_weight="1"
         android:drawableTop="@drawable/iconplus"
         android:onClick="ToCompraTickesActivity"
         android:text="Comprar Tickets"
-        app:layout_constraintBottom_toTopOf="@+id/ticketLayout"
+        app:layout_constraintBottom_toTopOf="@+id/btnAtivarTicket"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:layout_constraintVertical_bias="0.01999998" />
 
     <LinearLayout
         android:id="@+id/ticketLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="24dp"
+        android:layout_height="120dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/btnAtivarTicket"
-        app:layout_constraintTop_toBottomOf="@+id/btnIncluirVeiculos"
+        app:layout_constraintTop_toBottomOf="@+id/btnComprarTickets"
         app:layout_constraintVertical_bias="1.0"
         tools:layout_editor_absoluteX="170dp">
 
@@ -52,7 +51,8 @@
             android:text="TICKETS ATIVOS - ALERTAS"
             android:textAlignment="center"
             android:textColor="@android:color/black"
-            android:textSize="25sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TableLayout
             android:id="@+id/tableLayout"
@@ -139,7 +139,7 @@
         android:layout_height="wrap_content"
         android:text="Tickets Diponiveis: 0"
         android:textColor="@android:color/black"
-        android:textSize="30sp"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -151,8 +151,8 @@
         android:layout_height="wrap_content"
         android:onClick="veiculosCadastrados"
         android:text="Tela VCadastrados"
-        app:layout_constraintBottom_toTopOf="@+id/btnComprarTickets"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnIncluirVeiculos" />
 

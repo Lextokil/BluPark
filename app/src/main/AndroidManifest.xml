@@ -13,9 +13,14 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity.VeiculosCadastrados"></activity>
         <activity android:name=".activity.AtivarTicketActivity" />
-        <activity android:name=".activity.CompraTicketsActivity" />
-        <activity android:name=".activity.CadastroVeiculoActivity" />
-        <activity android:name=".activity.DashBoardActivity" />
+        <activity android:name=".activity.CompraTicketsActivity"
+            android:label="Comprar Tickets"
+            android:parentActivityName=".activity.DashBoardActivity"/>
+        <activity android:name=".activity.CadastroVeiculoActivity"
+            android:label="Cadatrar um veículo"
+            android:parentActivityName=".activity.DashBoardActivity"/>
+        <activity android:name=".activity.DashBoardActivity"
+            android:label="@string/title_activity_dash_board"/>
         <activity
             android:name=".activity.CadastroActivity"
             android:label="@string/title_Cadastro"

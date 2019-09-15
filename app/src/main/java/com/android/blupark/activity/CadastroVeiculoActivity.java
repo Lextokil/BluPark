@@ -33,14 +33,11 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
         btnMoto = findViewById(R.id.btnMoto);
         btnOnibus = findViewById(R.id.btnOnibus);
         btnCaminhao = findViewById(R.id.btnCaminhao);
-        btnVeiculosCadastrados = findViewById(R.id.btnVeiculosCadastrados);
+
 
     }
 
-    public void toVeiculosCadastrados (Activity activity, android.view.View view){
-        Intent i = new Intent(activity, VeiculosCadastrados.class);
-        activity.startActivity(i);
-    }
+
 
 
     public void salvarVeiculo(View view){
