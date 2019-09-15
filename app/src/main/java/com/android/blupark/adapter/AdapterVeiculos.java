@@ -10,10 +10,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.blupark.R;
 import com.android.blupark.helper.UsuarioHelper;
+import com.android.blupark.model.Veiculo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyViewHolder>{
 
-    @NonNull
+    public AdapterVeiculos(List<Veiculo> lista) {
+        UsuarioHelper.veiculos = (ArrayList<Veiculo>) lista;
+    }
+
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View veiculosLista = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_veiculos, parent, false);
@@ -29,7 +36,7 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
 
     @Override
     public int getItemCount() {
-        return 5;
+        return UsuarioHelper.veiculos.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

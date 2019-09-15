@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import com.android.blupark.R;
 import com.android.blupark.adapter.AdapterVeiculos;
+import com.android.blupark.helper.UsuarioHelper;
 
 public class VeiculosCadastrados extends AppCompatActivity {
 
@@ -20,7 +21,7 @@ public class VeiculosCadastrados extends AppCompatActivity {
         recyclerVeiculos.findViewById(R.id.recyclerVeiculos);
 
         //Config Adapter
-        AdapterVeiculos adapter = new AdapterVeiculos();
+        AdapterVeiculos adapter = new AdapterVeiculos( UsuarioHelper.veiculos );
 
         //Config RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());

@@ -6,11 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".activity.LoginActivity">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="269dp"
+        android:layout_height="110dp"
+        app:layout_constraintBottom_toTopOf="@+id/editLoginEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.635"
+        app:srcCompat="@drawable/bluparklogohorizontal" />
+
     <Button
         android:id="@+id/btnEntrar"
-        android:layout_width="217dp"
-        android:layout_height="53dp"
-        android:layout_marginBottom="4dp"
+        android:layout_width="210dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="45dp"
         android:background="#0F67B6"
         android:bottomLeftRadius="8dp"
         android:bottomRightRadius="8dp"
@@ -25,17 +36,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.759" />
+        app:layout_constraintVertical_bias="0.758" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="269dp"
-        android:layout_height="110dp"
-        app:layout_constraintBottom_toTopOf="@+id/editLoginEmail"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editLoginSenha"
+        android:layout_width="332dp"
+        android:layout_height="62dp"
+        android:hint="Senha"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/btnEntrar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bluparklogohorizontal" />
+        app:layout_constraintVertical_bias="0.911" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/editLoginEmail"
@@ -50,18 +64,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editLoginSenha"
-        android:layout_width="332dp"
-        android:layout_height="62dp"
-        android:hint="Senha"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/btnEntrar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.775" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
