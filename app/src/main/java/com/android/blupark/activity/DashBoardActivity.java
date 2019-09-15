@@ -247,4 +247,8 @@ public class DashBoardActivity extends AppCompatActivity {
        // textPlaca.setText(UsuarioHelper.veiculo.getPlaca());
 
     }
+
+    public void veiculosCadastrados(View view){
+        UsuarioHelper.toVeiculosCadastrados(this);
+    }
 }

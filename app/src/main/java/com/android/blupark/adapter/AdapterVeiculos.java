@@ -22,9 +22,9 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.placa.setText(UsuarioHelper.veiculo.getPlaca().toString());
-        holder.modelo.setText(UsuarioHelper.veiculo.getModelo().toString());
-        holder.tipo.setText(UsuarioHelper.veiculo.getPlaca().toString());
+        holder.placa.setText(UsuarioHelper.veiculos.get(position).getPlaca());
+        holder.modelo.setText(UsuarioHelper.veiculos.get(position).getModelo());
+        holder.tipo.setText(UsuarioHelper.veiculos.get(position).getTipo());
     }
 
     @Override
