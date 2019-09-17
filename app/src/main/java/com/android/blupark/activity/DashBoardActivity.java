@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.blupark.R;
 import com.android.blupark.helper.UsuarioHelper;
+import com.android.blupark.helper.VeiculoHelper;
 import com.android.blupark.model.Usuario;
 import com.android.blupark.model.Veiculo;
 import com.google.firebase.database.DataSnapshot;
@@ -254,15 +255,7 @@ public class DashBoardActivity extends AppCompatActivity {
             UsuarioHelper.veiculo = UsuarioHelper.veiculos.get(indexVeiculo);
             textModelo.setText(UsuarioHelper.veiculo.getModelo());
             textPlaca.setText(UsuarioHelper.veiculo.getPlaca());
-            if (UsuarioHelper.veiculo.getTipo().equalsIgnoreCase("MOTO")){
-                iconVeiculo.setImageResource(R.drawable.iconmoto);
-            }else if(UsuarioHelper.veiculo.getTipo().equalsIgnoreCase("CARRO")){
-                iconVeiculo.setImageResource(R.drawable.iconcarro);
-            }else if(UsuarioHelper.veiculo.getTipo().equalsIgnoreCase("ONIBUS")) {
-                iconVeiculo.setImageResource(R.drawable.iconbus);
-            }else{
-                iconVeiculo.setImageResource(R.drawable.iconcaminhao);
-            }
+            iconVeiculo.setImageResource(VeiculoHelper.GetIconTipe(UsuarioHelper.veiculo.getTipo()));
 
         }catch (Exception e){
 

@@ -12,8 +12,13 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.blupark.R;
+import com.android.blupark.adapter.VeiculoRow;
+import com.android.blupark.adapter.VeiculoRowAdapater;
 import com.android.blupark.helper.UsuarioHelper;
+import com.android.blupark.helper.VeiculoHelper;
 import com.android.blupark.model.Veiculo;
+
+import java.util.ArrayList;
 
 public class AtivarTicketActivity extends AppCompatActivity {
 
@@ -21,19 +26,20 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
     private Button btnAtivarTicket;
     private Spinner spinner;
+    private ArrayList<VeiculoRow> mVeiculosList;
+    private VeiculoRowAdapater mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ativar_ticket);
         spinner = findViewById(R.id.spinnerVeiculos);
+        initlist();
+
+         mAdapter = new VeiculoRowAdapater(this,mVeiculosList);
 
 
-        ArrayAdapter<Veiculo> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item,UsuarioHelper.veiculos);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.clearDisappearingChildren();
-        spinner.setAdapter(adapter);
+        spinner.setAdapter(mAdapter);
 
 
 
@@ -46,6 +52,17 @@ public class AtivarTicketActivity extends AppCompatActivity {
         });
     }
 
+
+    private  void initlist(){
+        mVeiculosList  = new ArrayList<>();
+        for (Veiculo veiculo: UsuarioHelper.veiculos){
+            String rowText = veiculo.getPlaca().toUpperCase() + " - " + veiculo.getModelo().toUpperCase();
+            int iconVeiculo = VeiculoHelper.GetIconTipe(veiculo.getTipo());
+
+            VeiculoRow veiculoRow = new VeiculoRow(rowText, iconVeiculo);
+            mVeiculosList.add(veiculoRow);
+        }
+    }
 
     public void activateTicket(){
 
@@ -65,13 +82,6 @@ public class AtivarTicketActivity extends AppCompatActivity {
         UsuarioHelper.toDashBoardActivity(AtivarTicketActivity.this);
 
     }
-
-
-
-
-
-
-
 
 
 
