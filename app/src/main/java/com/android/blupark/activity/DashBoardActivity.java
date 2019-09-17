@@ -6,6 +6,7 @@ import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -41,7 +42,8 @@ public class DashBoardActivity extends AppCompatActivity {
     private TextView qtdTickets, textPlaca, textModelo, textTimer;
     private LinearLayout ticketsLayout;
     private Button btnFinalizar, btnAtivarTicket;
-
+    private ImageView iconVeiculo;
+    private int indexVeiculo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +53,7 @@ public class DashBoardActivity extends AppCompatActivity {
         textModelo = findViewById(R.id.textModelo);
         textTimer = findViewById(R.id.textTimer);
         ticketsLayout = findViewById(R.id.ticketLayout);
+        iconVeiculo = findViewById(R.id.iconveiculo);
 
         btnAtivarTicket = findViewById(R.id.btnAtivarTicket);
         btnAtivarTicket.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +91,7 @@ public class DashBoardActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         mTimeLeftMillis = prefs.getLong("millisLeft", START_TIME_IN_MILLIS);
         mTimerRunning = prefs.getBoolean("timerRunning", false);
+        indexVeiculo = prefs.getInt("index", 0);
         UsuarioHelper.isTicketAtivo = mTimerRunning;
         if(mTimerRunning){
             mEndTime = prefs.getLong("endTime", 0);
@@ -123,6 +127,7 @@ public class DashBoardActivity extends AppCompatActivity {
         editor.putLong("millisLeft",mTimeLeftMillis);
         editor.putBoolean("timerRunning", mTimerRunning);
         editor.putLong("endTime",mEndTime);
+        editor.putInt("index", indexVeiculo);
 
         editor.apply();
 
@@ -139,12 +144,13 @@ public class DashBoardActivity extends AppCompatActivity {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                UsuarioHelper.veiculos.clear();
                 for (DataSnapshot dados: dataSnapshot.getChildren()){
                     Log.i("dados", "Retorno "+ dados.toString());
                     Veiculo veiculo = dados.getValue(Veiculo.class);
                     UsuarioHelper.veiculos.add(veiculo);
                 }
-                Log.i("Veiculos", "1 Index Array : "+ UsuarioHelper.veiculos.get(1));
+                Log.i("Veiculos", "1 Index Array : "+ UsuarioHelper.veiculos.get(1).getPlaca());
             }
 
             @Override
@@ -243,9 +249,18 @@ public class DashBoardActivity extends AppCompatActivity {
     }
 
     private void updateTicketComponents(){
-       // textModelo.setText(UsuarioHelper.veiculo.getModelo());
-       // textPlaca.setText(UsuarioHelper.veiculo.getPlaca());
-
+        UsuarioHelper.veiculo = UsuarioHelper.veiculos.get(indexVeiculo);
+        textModelo.setText(UsuarioHelper.veiculo.getModelo());
+        textPlaca.setText(UsuarioHelper.veiculo.getPlaca());
+        if (UsuarioHelper.veiculo.getTipo().equalsIgnoreCase("MOTO")){
+            iconVeiculo.setImageResource(R.drawable.iconmoto);
+        }else if(UsuarioHelper.veiculo.getTipo().equalsIgnoreCase("CARRO")){
+            iconVeiculo.setImageResource(R.drawable.iconcarro);
+        }else if(UsuarioHelper.veiculo.getTipo().equalsIgnoreCase("ONIBUS")) {
+            iconVeiculo.setImageResource(R.drawable.iconbus);
+        }else{
+            iconVeiculo.setImageResource(R.drawable.iconcaminhao);
+        }
     }
 
     public void veiculosCadastrados(View view){

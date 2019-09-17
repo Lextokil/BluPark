@@ -18,6 +18,7 @@ public class VeiculosCadastrados extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_veiculos_cadastrados);
 
+        recyclerVeiculos.findViewById(R.id.recyclerteste);
         recyclerVeiculos.findViewById(R.id.recyclerVeiculos);
 
         //Config Adapter

@@ -1,5 +1,7 @@
 package com.android.blupark.model;
 
+import androidx.annotation.NonNull;
+
 import com.android.blupark.config.ConfiguracaoFireBase;
 import com.android.blupark.helper.UsuarioHelper;
 import com.google.firebase.database.DatabaseReference;
@@ -45,5 +47,9 @@ public class Veiculo {
         this.tipo = tipo;
     }
 
-
+    @NonNull
+    @Override
+    public String toString() {
+        return placa.toUpperCase() +" - "+ modelo.toUpperCase();
+    }
 }

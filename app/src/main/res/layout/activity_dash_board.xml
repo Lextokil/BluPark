@@ -37,7 +37,7 @@
     <LinearLayout
         android:id="@+id/ticketLayout"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="130dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/btnAtivarTicket"
         app:layout_constraintTop_toBottomOf="@+id/btnComprarTickets"
@@ -48,6 +48,7 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#FFFFFF"
             android:text="TICKETS ATIVOS - ALERTAS"
             android:textAlignment="center"
             android:textColor="@android:color/black"
@@ -57,34 +58,100 @@
         <TableLayout
             android:id="@+id/tableLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:paddingBottom="10sp">
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingTop="10sp">
 
-                <TextView
-                    android:id="@+id/textPlaca"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Placa"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="10sp">
 
-                <TextView
-                    android:id="@+id/textTimer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="00:00"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp" />
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/boxveiculo" />
 
-                <Button
-                    android:id="@+id/btnFinalizar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Finalizar Ticket" />
+                    <ImageView
+                        android:id="@+id/iconveiculo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5sp"
+                        android:paddingTop="5sp"
+                        android:paddingBottom="5sp"
+                        app:srcCompat="@drawable/iconcarro" />
+
+                    <TextView
+                        android:id="@+id/textModelo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="40sp"
+                        android:paddingTop="20dp"
+                        android:text="Modelo"
+                        android:textColor="@android:color/black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/textPlaca"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="40sp"
+                        android:paddingTop="5sp"
+                        android:text="Placa"
+                        android:textAlignment="viewStart"
+                        android:textColor="@android:color/black"
+                        android:textSize="14dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp">
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/boxveiculo" />
+
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5sp"
+                        android:paddingTop="10sp"
+                        app:srcCompat="@drawable/icontimer" />
+
+                    <TextView
+                        android:id="@+id/textTimer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="45sp"
+                        android:text="00:00"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/Restante"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5sp"
+                        android:paddingLeft="40sp"
+                        android:paddingTop="22sp"
+                        android:text="Restante"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
 
             </TableRow>
 
@@ -92,33 +159,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/textModelo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Modelo"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp" />
-
-                <TextView
-                    android:id="@+id/tempoRestante"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5sp"
-                    android:text="Tempo restante"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="22sp" />
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
         </TableLayout>
+
+        <Button
+            android:id="@+id/btnFinalizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0067B2"
+            android:text="Finalizar Ticket" />
 
     </LinearLayout>
 
