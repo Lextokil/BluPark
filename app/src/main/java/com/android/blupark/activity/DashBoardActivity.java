@@ -93,6 +93,7 @@ public class DashBoardActivity extends AppCompatActivity {
         mTimerRunning = prefs.getBoolean("timerRunning", false);
         indexVeiculo = prefs.getInt("index", 0);
         UsuarioHelper.isTicketAtivo = mTimerRunning;
+        Log.i("Veiculos", "1 Index Array : "+ indexVeiculo);
         if(mTimerRunning){
             mEndTime = prefs.getLong("endTime", 0);
             mTimeLeftMillis = mEndTime - System.currentTimeMillis();
@@ -150,7 +151,7 @@ public class DashBoardActivity extends AppCompatActivity {
                     Veiculo veiculo = dados.getValue(Veiculo.class);
                     UsuarioHelper.veiculos.add(veiculo);
                 }
-                Log.i("Veiculos", "1 Index Array : "+ UsuarioHelper.veiculos.get(1).getPlaca());
+                updateTicketComponents();
             }
 
             @Override
@@ -249,18 +250,24 @@ public class DashBoardActivity extends AppCompatActivity {
     }
 
     private void updateTicketComponents(){
-        UsuarioHelper.veiculo = UsuarioHelper.veiculos.get(indexVeiculo);
-        textModelo.setText(UsuarioHelper.veiculo.getModelo());
-        textPlaca.setText(UsuarioHelper.veiculo.getPlaca());
-        if (UsuarioHelper.veiculo.getTipo().equalsIgnoreCase("MOTO")){
-            iconVeiculo.setImageResource(R.drawable.iconmoto);
-        }else if(UsuarioHelper.veiculo.getTipo().equalsIgnoreCase("CARRO")){
-            iconVeiculo.setImageResource(R.drawable.iconcarro);
-        }else if(UsuarioHelper.veiculo.getTipo().equalsIgnoreCase("ONIBUS")) {
-            iconVeiculo.setImageResource(R.drawable.iconbus);
-        }else{
-            iconVeiculo.setImageResource(R.drawable.iconcaminhao);
+        try {
+            UsuarioHelper.veiculo = UsuarioHelper.veiculos.get(indexVeiculo);
+            textModelo.setText(UsuarioHelper.veiculo.getModelo());
+            textPlaca.setText(UsuarioHelper.veiculo.getPlaca());
+            if (UsuarioHelper.veiculo.getTipo().equalsIgnoreCase("MOTO")){
+                iconVeiculo.setImageResource(R.drawable.iconmoto);
+            }else if(UsuarioHelper.veiculo.getTipo().equalsIgnoreCase("CARRO")){
+                iconVeiculo.setImageResource(R.drawable.iconcarro);
+            }else if(UsuarioHelper.veiculo.getTipo().equalsIgnoreCase("ONIBUS")) {
+                iconVeiculo.setImageResource(R.drawable.iconbus);
+            }else{
+                iconVeiculo.setImageResource(R.drawable.iconcaminhao);
+            }
+
+        }catch (Exception e){
+
         }
+
     }
 
     public void veiculosCadastrados(View view){
