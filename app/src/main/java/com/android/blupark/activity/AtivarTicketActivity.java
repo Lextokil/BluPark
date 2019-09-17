@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -79,6 +80,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
         editor.putLong("endTime",(System.currentTimeMillis() + 60000));
         editor.putInt("index", index);
         editor.apply();
+        useTicket();
         UsuarioHelper.toDashBoardActivity(AtivarTicketActivity.this);
 
     }
@@ -95,6 +97,14 @@ public class AtivarTicketActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
 
+    }
+
+    public void useTicket(){
+        UsuarioHelper.addTicketUsuarioAtual(-1);
+        Toast.makeText(AtivarTicketActivity.this,
+                "Ticket Ativado com sucesso!",
+                Toast.LENGTH_LONG).show();
+        UsuarioHelper.toDashBoardActivity(this);
     }
 
 }
