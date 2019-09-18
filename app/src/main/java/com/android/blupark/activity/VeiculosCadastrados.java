@@ -11,15 +11,15 @@ import com.android.blupark.helper.UsuarioHelper;
 
 public class VeiculosCadastrados extends AppCompatActivity {
 
-    private RecyclerView recyclerVeiculos;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_veiculos_cadastrados);
 
-        recyclerVeiculos.findViewById(R.id.recyclerteste);
-        recyclerVeiculos.findViewById(R.id.recyclerVeiculos);
+        //recyclerVeiculos.findViewById(R.id.recyclerteste);
+        RecyclerView recyclerVeiculos = findViewById(R.id.recyclerVeiculos);
 
         //Config Adapter
         AdapterVeiculos adapter = new AdapterVeiculos( UsuarioHelper.veiculos );

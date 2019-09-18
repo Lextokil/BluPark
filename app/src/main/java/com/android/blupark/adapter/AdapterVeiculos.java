@@ -21,6 +21,7 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
         UsuarioHelper.veiculos = (ArrayList<Veiculo>) lista;
     }
 
+    @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View veiculosLista = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_veiculos, parent, false);
