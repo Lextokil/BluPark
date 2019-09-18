@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.VeiculosCadastrados"></activity>
-        <activity android:name=".activity.AtivarTicketActivity" />
+        <activity android:name=".activity.AtivarTicketActivity"
+            android:label="Ativar Tickets"
+            android:parentActivityName=".activity.DashBoardActivity"/>
         <activity android:name=".activity.CompraTicketsActivity"
             android:label="Comprar Tickets"
             android:parentActivityName=".activity.DashBoardActivity"/>

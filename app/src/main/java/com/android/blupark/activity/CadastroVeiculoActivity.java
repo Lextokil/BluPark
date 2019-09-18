@@ -10,9 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.service.autofill.RegexValidator;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import java.util.regex.Pattern;
 
 public class CadastroVeiculoActivity extends AppCompatActivity {
     private TextInputEditText campoPlaca, campoModelo;
@@ -25,6 +29,9 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_veiculo);
+        Log.i("regex", "regex:  "+ placaVeiculadoValida("miz2670"));
+
+
 
         tipo = "";
         campoModelo = findViewById(R.id.editModelo);
@@ -47,19 +54,24 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
         if (!tipo.isEmpty()){
             if (!textModelo.isEmpty()){
                 if(!textPlaca.isEmpty()){
+                    if (placaVeiculadoValida(textPlaca)){
+                        try {
+                            veiculo = new Veiculo();
+                            veiculo.setPlaca(textPlaca.toUpperCase());
+                            veiculo.setModelo(textModelo.toUpperCase());
+                            veiculo.setTipo(tipo);
+                            veiculo.salvarVeiculo();
+                            UsuarioHelper.toDashBoardActivity(CadastroVeiculoActivity.this);
+                            Toast.makeText(CadastroVeiculoActivity.this,
+                                    "Veículo cadastrado com sucesso!",
+                                    Toast.LENGTH_LONG).show();
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
 
-                    try {
-                        veiculo = new Veiculo();
-                        veiculo.setPlaca(textPlaca);
-                        veiculo.setModelo(textModelo);
-                        veiculo.setTipo(tipo);
-                        veiculo.salvarVeiculo();
-                        UsuarioHelper.toDashBoardActivity(CadastroVeiculoActivity.this);
+                    }else{
                         Toast.makeText(CadastroVeiculoActivity.this,
-                                "Veículo cadastrado com sucesso!",
-                                Toast.LENGTH_LONG).show();
-                    }catch (Exception e){
-                        e.printStackTrace();
+                                "Digite uma placa valida:mmm9999", Toast.LENGTH_LONG).show();
                     }
 
                 }else{
@@ -100,4 +112,10 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
 
 
 
+
+
+
+    public  boolean placaVeiculadoValida(String placa){
+     return Pattern.compile("[a-zA-Z]{3}[0-9]{4}").matcher(placa).matches();
+    }
 }
