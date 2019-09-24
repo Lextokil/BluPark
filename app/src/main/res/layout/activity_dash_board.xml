@@ -10,14 +10,14 @@
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="0dp"
-        android:layout_height="224dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13999999">
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/imageView3"
@@ -29,7 +29,7 @@
             android:id="@+id/textTicketsDisponiveis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="4dp"
             android:drawableLeft="@drawable/btn_icone_ticket"
             android:fontFamily="sans-serif-medium"
             android:text="Tickets Diponiveis: 0"
@@ -39,7 +39,8 @@
         <Button
             android:id="@+id/btnComprarTickets"
             android:layout_width="220dp"
-            android:layout_height="42dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/btn_style_dashboard_comprar"
             android:drawableLeft="@drawable/btn_icone_adicionar"
             android:onClick="ToCompraTickesActivity"
@@ -53,9 +54,9 @@
         android:id="@+id/ticketLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginEnd="34dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="160dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -73,7 +74,7 @@
             android:fontFamily="sans-serif-medium"
             android:text="Tickets Ativos - Alertas"
             android:textAlignment="center"
-            android:textColor="#3B70CE"
+            android:textColor="#1F55B4"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -106,6 +107,7 @@
                     android:id="@+id/textModelo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
                     android:paddingLeft="45dp"
                     android:paddingTop="0dp"
                     android:text="Modelo"
@@ -116,6 +118,7 @@
                     android:id="@+id/textPlaca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
                     android:paddingLeft="45dp"
                     android:paddingTop="18dp"
                     android:text="Placa"
@@ -143,6 +146,7 @@
                     android:id="@+id/textTimer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
                     android:paddingLeft="45dp"
                     android:text="00:00"
                     android:textAlignment="center"
@@ -179,7 +183,7 @@
     <LinearLayout
         android:id="@+id/linearLayout6"
         android:layout_width="0dp"
-        android:layout_height="226dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/ticketLayout"
@@ -194,16 +198,14 @@
             android:layout_height="14dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
-            android:layout_weight="1"
             android:background="@drawable/bakground_divider" />
 
         <Button
             android:id="@+id/btnIncluirVeiculos"
             android:layout_width="220dp"
-            android:layout_height="42dp"
+            android:layout_height="30dp"
             android:layout_marginTop="18dp"
             android:layout_marginBottom="8dp"
-            android:layout_weight="1"
             android:background="@drawable/btn_style_dashboard_adicionar_veiculo"
             android:drawableLeft="@drawable/btn_icone_adicionar"
             android:fontFamily="sans-serif-medium"
@@ -218,7 +220,7 @@
         <Button
             android:id="@+id/button3"
             android:layout_width="220dp"
-            android:layout_height="42dp"
+            android:layout_height="30dp"
             android:layout_margin="8dp"
             android:background="@drawable/btn_style_dashboard_adicionar_veiculo"
             android:fontFamily="sans-serif-medium"
@@ -231,7 +233,7 @@
         <Button
             android:id="@+id/btnAtivarTicket"
             android:layout_width="220dp"
-            android:layout_height="42dp"
+            android:layout_height="30dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="18dp"
             android:background="@drawable/btn_style_dashboard_comprar"
