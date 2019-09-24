@@ -5,7 +5,7 @@
         android:drawable="@drawable/icone_sinal_mais"
         android:width="20dp"
         android:height="20dp"
-        android:left="5dp"
+        android:left="10dp"
         />
 
 </layer-list >

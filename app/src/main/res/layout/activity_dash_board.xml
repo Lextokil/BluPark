@@ -4,24 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_dashboard_ticket"
     tools:context=".activity.DashBoardActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_dashboard_ticket"
+        android:layout_height="224dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/ticketLayout"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.13999999">
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="292dp"
+            android:layout_width="match_parent"
             android:layout_height="79dp"
             app:srcCompat="@drawable/bluparklogohorizontal" />
 
@@ -33,15 +33,13 @@
             android:drawableLeft="@drawable/btn_icone_ticket"
             android:fontFamily="sans-serif-medium"
             android:text="Tickets Diponiveis: 0"
-            android:textColor="#3F633C"
+            android:textColor="#5E615E"
             android:textSize="24dp" />
 
         <Button
             android:id="@+id/btnComprarTickets"
-            android:layout_width="192dp"
+            android:layout_width="220dp"
             android:layout_height="42dp"
-            android:layout_marginBottom="15dp"
-            android:layout_weight="1"
             android:background="@drawable/btn_style_dashboard_comprar"
             android:drawableLeft="@drawable/btn_icone_adicionar"
             android:onClick="ToCompraTickesActivity"
@@ -57,18 +55,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="34dp"
         android:layout_marginEnd="34dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="60dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bakground_divider"
             android:fontFamily="sans-serif-medium"
             android:text="Tickets Ativos - Alertas"
             android:textAlignment="center"
@@ -86,7 +87,11 @@
 
             <RelativeLayout
                 android:layout_width="137dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_dashboard_veiculo_ativo">
 
                 <ImageView
                     android:id="@+id/iconveiculo"
@@ -122,7 +127,9 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_dashboard_veiculo_ativo">
 
                 <ImageView
                     android:id="@+id/imageView6"
@@ -158,11 +165,13 @@
 
         <Button
             android:id="@+id/btnFinalizar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="#0067B2"
+            android:layout_width="220dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/btn_style_laranja"
             android:text="Finalizar Ticket"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
             android:textSize="20dp" />
 
     </LinearLayout>
@@ -170,15 +179,23 @@
     <LinearLayout
         android:id="@+id/linearLayout6"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_dashboard_btn_veiculos"
+        android:layout_height="226dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/ticketLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
         app:layout_constraintVertical_bias="0.0">
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/bakground_divider" />
 
         <Button
             android:id="@+id/btnIncluirVeiculos"
@@ -213,16 +230,25 @@
 
         <Button
             android:id="@+id/btnAtivarTicket"
-            android:layout_width="232dp"
+            android:layout_width="220dp"
             android:layout_height="42dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="18dp"
-            android:background="@drawable/btn_style_laranja"
+            android:background="@drawable/btn_style_dashboard_comprar"
             android:text="Ativar Ticket"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
             android:visibility="visible" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/bakground_divider" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
