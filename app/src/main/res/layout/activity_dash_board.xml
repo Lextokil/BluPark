@@ -13,16 +13,15 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
-            android:layout_height="79dp"
+            android:layout_height="65dp"
             app:srcCompat="@drawable/bluparklogohorizontal" />
 
         <TextView
@@ -54,21 +53,18 @@
         android:id="@+id/ticketLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="160dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/bakground_divider"
             android:fontFamily="sans-serif-medium"
@@ -189,16 +185,7 @@
         app:layout_constraintBottom_toTopOf="@+id/ticketLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
-        app:layout_constraintVertical_bias="0.0">
-
-        <View
-            android:id="@+id/divider3"
-            android:layout_width="match_parent"
-            android:layout_height="14dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:background="@drawable/bakground_divider" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
         <Button
             android:id="@+id/btnIncluirVeiculos"
@@ -242,14 +229,6 @@
             android:textColor="#FFFFFF"
             android:textSize="20dp"
             android:visibility="visible" />
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="14dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:background="@drawable/bakground_divider" />
 
     </LinearLayout>
 
