@@ -253,7 +253,7 @@ public class DashBoardActivity extends AppCompatActivity {
     private void updateTicketComponents(){
         try {
             UsuarioHelper.veiculo = UsuarioHelper.veiculos.get(indexVeiculo);
-            textModelo.setText(UsuarioHelper.veiculo.getModelo());
+            textModelo.setText(UsuarioHelper.veiculo.getModelo().subSequence(0,15));
             textPlaca.setText(UsuarioHelper.veiculo.getPlaca());
             iconVeiculo.setImageResource(VeiculoHelper.GetIconTipe(UsuarioHelper.veiculo.getTipo()));
 
