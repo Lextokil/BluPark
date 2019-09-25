@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_dashboard_ticket"
     tools:context=".activity.DashBoardActivity">
 
     <LinearLayout
@@ -22,26 +21,29 @@
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="65dp"
+            android:layout_marginBottom="8dp"
             app:srcCompat="@drawable/bluparklogohorizontal" />
 
         <TextView
             android:id="@+id/textTicketsDisponiveis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:layout_marginTop="8dp"
             android:drawableLeft="@drawable/btn_icone_ticket"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/roboto_condensed_bold"
             android:text="Tickets Diponiveis: 0"
-            android:textColor="#5E615E"
+            android:textColor="#3F423F"
             android:textSize="24dp" />
 
         <Button
             android:id="@+id/btnComprarTickets"
             android:layout_width="220dp"
             android:layout_height="30dp"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="15dp"
             android:background="@drawable/btn_style_dashboard_comprar"
             android:drawableLeft="@drawable/btn_icone_adicionar"
+            android:fontFamily="@font/roboto_condensed_bold"
             android:onClick="ToCompraTickesActivity"
             android:text="Comprar Tickets"
             android:textAllCaps="false"
@@ -53,6 +55,7 @@
         android:id="@+id/ticketLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,15 +66,15 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginEnd="38dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/bakground_divider"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/roboto_condensed_bold"
             android:text="Tickets Ativos - Alertas"
             android:textAlignment="center"
             android:textColor="#1F55B4"
-            android:textSize="20sp"
+            android:textSize="24dp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -85,90 +88,96 @@
             <RelativeLayout
                 android:layout_width="137dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="38dp"
                 android:layout_marginEnd="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/background_dashboard_veiculo_ativo">
+                android:background="@drawable/btn_style_dashboard_comprar">
 
                 <ImageView
                     android:id="@+id/iconveiculo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="0dp"
-                    android:paddingTop="0dp"
-                    android:paddingBottom="0dp"
+                    android:paddingLeft="4dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
                     app:srcCompat="@drawable/iconcarro" />
 
                 <TextView
                     android:id="@+id/textModelo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
-                    android:paddingLeft="45dp"
-                    android:paddingTop="0dp"
+                    android:fontFamily="@font/roboto_condensed_bold"
+                    android:paddingLeft="48dp"
+                    android:paddingTop="3dp"
                     android:text="Modelo"
-                    android:textColor="@android:color/black"
+                    android:textColor="#FFF"
                     android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/textPlaca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
-                    android:paddingLeft="45dp"
+                    android:fontFamily="@font/roboto_condensed_bold"
+                    android:paddingLeft="48dp"
                     android:paddingTop="18dp"
                     android:text="Placa"
                     android:textAlignment="viewStart"
-                    android:textColor="@android:color/black"
+                    android:textColor="#FFFFFF"
                     android:textSize="14dp" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="38dp"
                 android:layout_weight="1"
-                android:background="@drawable/background_dashboard_veiculo_ativo">
+                android:background="@drawable/btn_style_dashboard_comprar">
 
                 <ImageView
                     android:id="@+id/imageView6"
                     android:layout_width="38dp"
                     android:layout_height="match_parent"
-                    android:paddingLeft="0dp"
-                    android:paddingTop="0dp"
+                    android:paddingLeft="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
                     app:srcCompat="@drawable/icontimer" />
 
                 <TextView
                     android:id="@+id/textTimer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
+                    android:fontFamily="@font/roboto_condensed_bold"
                     android:paddingLeft="45dp"
                     android:text="00:00"
+                    android:paddingTop="2dp"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                    android:textColor="#FFF"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/Restante"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_condensed_bold"
                     android:paddingLeft="45dp"
                     android:paddingTop="18dp"
                     android:text="Restante"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="15sp" />
+                    android:textColor="#FFF"
+                    android:textSize="14sp" />
             </RelativeLayout>
 
         </LinearLayout>
 
         <Button
             android:id="@+id/btnFinalizar"
-            android:layout_width="220dp"
-            android:layout_height="42dp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="38dp"
             android:layout_marginTop="14dp"
+            android:layout_marginEnd="38dp"
             android:background="@drawable/btn_style_laranja"
+            android:fontFamily="@font/roboto_condensed_bold"
             android:text="Finalizar Ticket"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
@@ -195,7 +204,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/btn_style_dashboard_adicionar_veiculo"
             android:drawableLeft="@drawable/btn_icone_adicionar"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/roboto_condensed_bold"
             android:onClick="ToCadastroVeiculos"
             android:text="Incluir Veículo"
             android:textAllCaps="false"
@@ -210,7 +219,7 @@
             android:layout_height="30dp"
             android:layout_margin="8dp"
             android:background="@drawable/btn_style_dashboard_adicionar_veiculo"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/roboto_condensed_bold"
             android:onClick="veiculosCadastrados"
             android:text="Veículos Cadastrados"
             android:textAllCaps="false"
@@ -218,12 +227,27 @@
             android:textSize="20dp" />
 
         <Button
-            android:id="@+id/btnAtivarTicket"
+            android:id="@+id/button4"
             android:layout_width="220dp"
             android:layout_height="30dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="18dp"
+            android:background="@drawable/btn_style_dashboard_adicionar_veiculo"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:text="Visualizar Mapa"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnAtivarTicket"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="38dp"
+            android:layout_marginBottom="4dp"
             android:background="@drawable/btn_style_dashboard_comprar"
+            android:fontFamily="@font/roboto_condensed_bold"
             android:text="Ativar Ticket"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
