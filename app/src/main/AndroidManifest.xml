@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.VeiculosCadastrados"
-            android:label="123" />
+            android:logo="@drawable/bluparklogohorizontal"
+            android:parentActivityName=".activity.DashBoardActivity"/>
         <activity android:name=".activity.AtivarTicketActivity"
             android:label="Ativar Tickets"
             android:parentActivityName=".activity.DashBoardActivity"/>
