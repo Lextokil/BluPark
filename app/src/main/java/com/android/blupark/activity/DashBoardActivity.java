@@ -42,7 +42,7 @@ public class DashBoardActivity extends AppCompatActivity {
 
     private TextView qtdTickets, textPlaca, textModelo, textTimer;
     private LinearLayout ticketsLayout;
-    private Button btnFinalizar, btnAtivarTicket;
+    private Button btnFinalizar, btnAtivarTicket, btnMaps;
     private ImageView iconVeiculo;
     private int indexVeiculo;
     @Override
@@ -61,6 +61,14 @@ public class DashBoardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 UsuarioHelper.toAtivarTicketsActivity(DashBoardActivity.this);
+            }
+        });
+
+        btnMaps = findViewById(R.id.btnMaps);
+        btnMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UsuarioHelper.toMapsActivity(DashBoardActivity.this);
             }
         });
 
@@ -253,7 +261,7 @@ public class DashBoardActivity extends AppCompatActivity {
     private void updateTicketComponents(){
         try {
             UsuarioHelper.veiculo = UsuarioHelper.veiculos.get(indexVeiculo);
-            textModelo.setText(UsuarioHelper.veiculo.getModelo().subSequence(0,15));
+            textModelo.setText(UsuarioHelper.veiculo.getModelo().substring(0,15));
             textPlaca.setText(UsuarioHelper.veiculo.getPlaca());
             iconVeiculo.setImageResource(VeiculoHelper.GetIconTipe(UsuarioHelper.veiculo.getTipo()));
 
