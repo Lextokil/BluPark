@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.VeiculosCadastrados"></activity>
+        <activity android:name=".activity.VeiculosCadastrados"
+            android:label="123" />
         <activity android:name=".activity.AtivarTicketActivity"
             android:label="Ativar Tickets"
             android:parentActivityName=".activity.DashBoardActivity"/>

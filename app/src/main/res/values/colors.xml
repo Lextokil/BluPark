@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-    <color name="btnLogin">#1FBAD6</color>
-    <color name="btnCadastro">#7777FC</color>
+    <color name="btnLogin">#5CAEF8</color>
+    <color name="btnCadastro">#0F67B6</color>
 
 </resources>

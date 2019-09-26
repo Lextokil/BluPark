@@ -10,6 +10,7 @@
         android:id="@+id/linearLayout5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,18 +18,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:layout_marginBottom="8dp"
-            app:srcCompat="@drawable/bluparklogohorizontal" />
-
         <TextView
             android:id="@+id/textTicketsDisponiveis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:drawableLeft="@drawable/btn_icone_ticket"
             android:fontFamily="@font/roboto_condensed_bold"
             android:text="Tickets Diponiveis: 0"
@@ -38,9 +33,9 @@
         <Button
             android:id="@+id/btnComprarTickets"
             android:layout_width="220dp"
-            android:layout_height="30dp"
+            android:layout_height="36dp"
             android:layout_marginTop="4dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/btn_style_dashboard_comprar"
             android:drawableLeft="@drawable/btn_icone_adicionar"
             android:fontFamily="@font/roboto_condensed_bold"
@@ -53,10 +48,11 @@
 
     <LinearLayout
         android:id="@+id/ticketLayout"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
+        android:layout_marginTop="6dp"
+        android:gravity="left"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,13 +63,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="38dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="38dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/bakground_divider"
             android:fontFamily="@font/roboto_condensed_bold"
             android:text="Tickets Ativos - Alertas"
             android:textAlignment="center"
-            android:textColor="#1F55B4"
+            android:textColor="#3F423F"
             android:textSize="24dp"
             android:textStyle="bold" />
 
@@ -148,8 +144,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_condensed_bold"
                     android:paddingLeft="45dp"
-                    android:text="00:00"
                     android:paddingTop="2dp"
+                    android:text="00:00"
                     android:textAlignment="center"
                     android:textColor="#FFF"
                     android:textSize="18sp" />
@@ -173,9 +169,11 @@
             android:id="@+id/btnFinalizar"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:layout_gravity="center"
             android:layout_marginStart="38dp"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="38dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/btn_style_laranja"
             android:fontFamily="@font/roboto_condensed_bold"
             android:text="Finalizar Ticket"
@@ -199,9 +197,9 @@
         <Button
             android:id="@+id/btnIncluirVeiculos"
             android:layout_width="220dp"
-            android:layout_height="30dp"
+            android:layout_height="36dp"
             android:layout_marginTop="18dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             android:background="@drawable/btn_style_dashboard_adicionar_veiculo"
             android:drawableLeft="@drawable/btn_icone_adicionar"
             android:fontFamily="@font/roboto_condensed_bold"
@@ -216,8 +214,8 @@
         <Button
             android:id="@+id/button3"
             android:layout_width="220dp"
-            android:layout_height="30dp"
-            android:layout_margin="8dp"
+            android:layout_height="36dp"
+            android:layout_margin="4dp"
             android:background="@drawable/btn_style_dashboard_adicionar_veiculo"
             android:fontFamily="@font/roboto_condensed_bold"
             android:onClick="veiculosCadastrados"
@@ -229,8 +227,8 @@
         <Button
             android:id="@+id/button4"
             android:layout_width="220dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="8dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="4dp"
             android:background="@drawable/btn_style_dashboard_adicionar_veiculo"
             android:fontFamily="@font/roboto_condensed_bold"
             android:text="Visualizar Mapa"
@@ -240,8 +238,8 @@
 
         <Button
             android:id="@+id/btnAtivarTicket"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_width="220dp"
+            android:layout_height="36dp"
             android:layout_marginStart="38dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="38dp"
