@@ -48,8 +48,8 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
 
 
     public void salvarVeiculo(View view){
-        String textPlaca = campoPlaca.getText().toString();
-        String textModelo = campoModelo.getText().toString();
+        String textPlaca = campoPlaca.getText().toString().toUpperCase();
+        String textModelo = campoModelo.getText().toString().toUpperCase();
 
         if (!tipo.isEmpty()){
             if (!textModelo.isEmpty()){
