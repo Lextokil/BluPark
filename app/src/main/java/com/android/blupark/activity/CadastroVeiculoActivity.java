@@ -48,6 +48,11 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
 
     public void salvarVeiculo(View view){
         String textPlaca = campoPlaca.getText().toString().toUpperCase();
+        String placaFormatada = textPlaca;
+        String placaLetras = placaFormatada.substring(0,3);
+        String placaNumeros = placaFormatada.substring(3,7);
+        placaFormatada = (placaLetras+"-"+placaNumeros);
+
         String textModelo = campoModelo.getText().toString().toUpperCase();
 
         if (!tipo.isEmpty()) {
@@ -56,7 +61,7 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
                     if (placaVeiculadoValida(textPlaca)) {
                         try {
                             veiculo = new Veiculo();
-                            veiculo.setPlaca(textPlaca.toUpperCase());
+                            veiculo.setPlaca(placaFormatada.toUpperCase());
                             veiculo.setModelo(textModelo.toUpperCase());
                             veiculo.setTipo(tipo);
                             veiculo.salvarVeiculo();
