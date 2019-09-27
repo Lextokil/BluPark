@@ -1,5 +1,7 @@
 package com.android.blupark.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,9 +14,11 @@ import com.android.blupark.R;
 import com.android.blupark.helper.UsuarioHelper;
 
 public class CompraTicketsActivity extends AppCompatActivity {
-    Button btn10, btn50,btn100,btnConfirm;
+    Button btn10, btn50, btn100, btnConfirm;
     TextView tickets;
     private int ticketsTemp;
+    private AlertDialog alerta;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,24 +32,42 @@ public class CompraTicketsActivity extends AppCompatActivity {
 
     }
 
-    public void addTicket(View view){
-        if(view.equals(btn10)){
+    public void addTicket(View view) {
+        if (view.equals(btn10)) {
             ticketsTemp += 10;
         } else if (view.equals(btn50)) {
             ticketsTemp += 50;
-        }else{
+        } else {
             ticketsTemp += 100;
         }
-        tickets.setText("Quantidade de tickets: "+ticketsTemp);
+        tickets.setText("Quantidade de tickets: " + ticketsTemp);
 
     }
 
-    public void confirmarCompra(View view){
-        UsuarioHelper.addTicketUsuarioAtual(ticketsTemp);
-        Toast.makeText(CompraTicketsActivity.this,
-                "Compra realizada com sucesso!",
-                Toast.LENGTH_LONG).show();
-        UsuarioHelper.toDashBoardActivity(this);
+    public void confirmarCompra(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Confirmar Compra");
+        builder.setMessage("Deseja confirmar o pedido?");
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+                Toast.makeText(CompraTicketsActivity.this,
+                        "Compra realizada com sucesso!",
+                        Toast.LENGTH_LONG).show();
+                UsuarioHelper.addTicketUsuarioAtual(ticketsTemp);
+                UsuarioHelper.toDashBoardActivity(CompraTicketsActivity.this);
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+                Toast.makeText(CompraTicketsActivity.this, "Compra cancelada!", Toast.LENGTH_SHORT).show();
+                ticketsTemp = 0;
+                tickets.setText("Quantidade de tickets: " + ticketsTemp);
+            }
+        });
+        alerta = builder.create();
+        alerta.show();
+
+
     }
 
 }
