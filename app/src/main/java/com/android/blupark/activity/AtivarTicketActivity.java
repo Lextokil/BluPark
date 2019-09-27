@@ -1,9 +1,11 @@
 package com.android.blupark.activity;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.service.autofill.RegexValidator;
 import android.util.Log;
@@ -20,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.blupark.R;
 import com.android.blupark.adapter.VeiculoRow;
 import com.android.blupark.adapter.VeiculoRowAdapater;
+import com.android.blupark.helper.Permissoes;
 import com.android.blupark.helper.UsuarioHelper;
 import com.android.blupark.helper.VeiculoHelper;
 import com.android.blupark.model.Veiculo;
@@ -40,12 +43,19 @@ public class AtivarTicketActivity extends AppCompatActivity {
     private VeiculoRowAdapater mAdapter;
     private AlertDialog alerta;
 
+    private String[] permissoes = new String[]{
+            Manifest.permission.ACCESS_FINE_LOCATION
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ativar_ticket);
         spinner = findViewById(R.id.spinnerVeiculos);
         initlist();
+
+        //Validar permissões
+        Permissoes.validarPermissoes(permissoes, this, 1);
 
         mAdapter = new VeiculoRowAdapater(this, mVeiculosList);
 
@@ -79,6 +89,30 @@ public class AtivarTicketActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        for(int permissaoResultado : grantResults){
+            if(permissaoResultado == PackageManager.PERMISSION_DENIED){
+                alertaValidacaoPermissao();
+            }
+        }
+    }
+
+    public void alertaValidacaoPermissao(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Permissões Negadas");
+        builder.setMessage("Para ativar o ticket é necessário aceitar as permissões");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+        builder.create().show();
+
+    }
 
     private void initlist() {
         mVeiculosList = new ArrayList<>();

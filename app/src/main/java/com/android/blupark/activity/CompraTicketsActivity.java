@@ -62,7 +62,7 @@ public class CompraTicketsActivity extends AppCompatActivity {
             public void onClick(DialogInterface arg0, int arg1) {
                 Toast.makeText(CompraTicketsActivity.this, "Compra cancelada!", Toast.LENGTH_SHORT).show();
                 ticketsTemp = 0;
-                tickets.setText("Quantidade de tickets: " + ticketsTemp);
+                tickets.setText("Tickets no carrinho: " + ticketsTemp);
             }
         });
         alerta = builder.create();
