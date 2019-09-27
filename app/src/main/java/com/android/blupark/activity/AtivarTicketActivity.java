@@ -1,6 +1,8 @@
 package com.android.blupark.activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.service.autofill.RegexValidator;
@@ -32,11 +34,11 @@ import java.util.ArrayList;
 public class AtivarTicketActivity extends AppCompatActivity {
 
 
-
     private Button btnAtivarTicket;
     private Spinner spinner;
     private ArrayList<VeiculoRow> mVeiculosList;
     private VeiculoRowAdapater mAdapter;
+    private AlertDialog alerta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,26 +47,42 @@ public class AtivarTicketActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinnerVeiculos);
         initlist();
 
-         mAdapter = new VeiculoRowAdapater(this,mVeiculosList);
+        mAdapter = new VeiculoRowAdapater(this, mVeiculosList);
 
 
         spinner.setAdapter(mAdapter);
-
 
 
         btnAtivarTicket = findViewById(R.id.btnAtivarTicket);
         btnAtivarTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               decreaseTicketByOne();
+                final AlertDialog.Builder builder = new AlertDialog.Builder(AtivarTicketActivity.this);
+                builder.setTitle("Cofirmação de ticket");
+                builder.setMessage("Deseja Ativar o ticket?");
+                builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        decreaseTicketByOne();
+                    }
+                });
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(AtivarTicketActivity.this, "Ativação Cancelada!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alerta = builder.create();
+                alerta = builder.show();
+
             }
         });
     }
 
 
-    private  void initlist(){
-        mVeiculosList  = new ArrayList<>();
-        for (Veiculo veiculo: UsuarioHelper.veiculos){
+    private void initlist() {
+        mVeiculosList = new ArrayList<>();
+        for (Veiculo veiculo : UsuarioHelper.veiculos) {
             String rowText = veiculo.getPlaca().toUpperCase() + " - " + veiculo.getModelo().toUpperCase();
             int iconVeiculo = VeiculoHelper.GetIconTipe(veiculo.getTipo());
 
@@ -72,9 +90,6 @@ public class AtivarTicketActivity extends AppCompatActivity {
             mVeiculosList.add(veiculoRow);
         }
     }
-
-
-
 
 
     @Override
@@ -88,24 +103,28 @@ public class AtivarTicketActivity extends AppCompatActivity {
         super.onStop();
 
     }
-    public void decreaseTicketByOne(){
+
+    public void decreaseTicketByOne() {
         final DatabaseReference ticketsRef = FirebaseDatabase.getInstance().getReference("usuarios")
                 .child(UsuarioHelper.getIDUsuarioAtual()).child("qtdTickets");
-              boolean condition = false;
+        boolean condition = false;
 
         ticketsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int total =  dataSnapshot.getValue(int.class);
+
+                int total = dataSnapshot.getValue(int.class);
                 total -= 1;
-                if (total > 0){
+                if (total > 0) {
                     ticketsRef.setValue(total);
                     Toast.makeText(AtivarTicketActivity.this,
                             "Ticket ativado com sucesso!",
                             Toast.LENGTH_LONG).show();
                     activateTicket();
 
-                }else{
+
+                } else {
                     Toast.makeText(AtivarTicketActivity.this,
                             "Tickets Insuficientes!",
                             Toast.LENGTH_LONG).show();
@@ -122,7 +141,8 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
 
     }
-    public void activateTicket(){
+
+    public void activateTicket() {
 
 
         UsuarioHelper.isTicketAtivo = true;
@@ -133,14 +153,16 @@ public class AtivarTicketActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.clear();
-        editor.putLong("millisLeft",60000);
+        editor.putLong("millisLeft", 60000);
         editor.putBoolean("timerRunning", UsuarioHelper.isTicketAtivo);
-        editor.putLong("endTime",(System.currentTimeMillis() + 60000));
+        editor.putLong("endTime", (System.currentTimeMillis() + 60000));
         editor.putInt("index", index);
         editor.apply();
         UsuarioHelper.toDashBoardActivity(AtivarTicketActivity.this);
 
     }
+
+
 
 
 }

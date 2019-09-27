@@ -45,6 +45,7 @@ public class CompraTicketsActivity extends AppCompatActivity {
     }
 
     public void confirmarCompra(View view) {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirmar Compra");
         builder.setMessage("Deseja confirmar o pedido?");
@@ -71,3 +72,5 @@ public class CompraTicketsActivity extends AppCompatActivity {
     }
 
 }
+
+

@@ -22,7 +22,7 @@ public class VeiculosCadastrados extends AppCompatActivity {
         RecyclerView recyclerVeiculos = findViewById(R.id.recyclerVeiculos);
 
         //Config Adapter
-        AdapterVeiculos adapter = new AdapterVeiculos( UsuarioHelper.veiculos );
+        AdapterVeiculos adapter = new AdapterVeiculos(UsuarioHelper.veiculos );
 
         //Config RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());

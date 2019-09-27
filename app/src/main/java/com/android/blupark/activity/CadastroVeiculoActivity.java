@@ -1,4 +1,5 @@
 package com.android.blupark.activity;
+
 import com.android.blupark.R;
 import com.android.blupark.helper.UsuarioHelper;
 import com.android.blupark.model.Veiculo;
@@ -21,7 +22,7 @@ import java.util.regex.Pattern;
 public class CadastroVeiculoActivity extends AppCompatActivity {
     private TextInputEditText campoPlaca, campoModelo;
 
-    private Button btnCarro, btnMoto, btnOnibus, btnCaminhao, btnVeiculosCadastrados;
+    private Button btnCarro, btnMoto, btnOnibus, btnCaminhao;
     private Veiculo veiculo;
     private String tipo;
 
@@ -29,8 +30,7 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_veiculo);
-        Log.i("regex", "regex:  "+ placaVeiculadoValida("miz2670"));
-
+        Log.i("regex", "regex:  " + placaVeiculadoValida("miz2670"));
 
 
         tipo = "";
@@ -46,15 +46,14 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
 
 
 
-
     public void salvarVeiculo(View view){
         String textPlaca = campoPlaca.getText().toString().toUpperCase();
         String textModelo = campoModelo.getText().toString().toUpperCase();
 
-        if (!tipo.isEmpty()){
-            if (!textModelo.isEmpty()){
-                if(!textPlaca.isEmpty()){
-                    if (placaVeiculadoValida(textPlaca)){
+        if (!tipo.isEmpty()) {
+            if (!textModelo.isEmpty()) {
+                if (!textPlaca.isEmpty()) {
+                    if (placaVeiculadoValida(textPlaca)) {
                         try {
                             veiculo = new Veiculo();
                             veiculo.setPlaca(textPlaca.toUpperCase());
@@ -65,32 +64,32 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
                             Toast.makeText(CadastroVeiculoActivity.this,
                                     "Veículo cadastrado com sucesso!",
                                     Toast.LENGTH_LONG).show();
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
 
-                    }else{
+                    } else {
                         Toast.makeText(CadastroVeiculoActivity.this,
-                                "Digite uma placa valida:mmm9999", Toast.LENGTH_LONG).show();
+                                "Digite uma placa valida: mmm9999", Toast.LENGTH_LONG).show();
                     }
 
-                }else{
+                } else {
                     Toast.makeText(CadastroVeiculoActivity.this,
                             "Preencha a placa do veículo!", Toast.LENGTH_LONG).show();
                 }
 
-            }else{
+            } else {
                 Toast.makeText(CadastroVeiculoActivity.this,
                         "Preencha o modelo do veículo", Toast.LENGTH_LONG).show();
             }
 
-        }else{
+        } else {
             Toast.makeText(CadastroVeiculoActivity.this,
                     "Selecione um tipo de veículo!", Toast.LENGTH_LONG).show();
         }
     }
 
-    public String tipoVeiculo(View view){
+    public String tipoVeiculo(View view) {
 
         btnMoto.setBackgroundTintList(getResources().getColorStateList(R.color.btnCadastro));
         btnCaminhao.setBackgroundTintList(getResources().getColorStateList(R.color.btnCadastro));
@@ -98,24 +97,20 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
         btnOnibus.setBackgroundTintList(getResources().getColorStateList(R.color.btnCadastro));
         //Muda a cor do botão selecionado
         view.setBackgroundTintList(getResources().getColorStateList(R.color.btnLogin));
-        if ( view.getId() == btnCarro.getId()) {
+        if (view.getId() == btnCarro.getId()) {
             tipo = "CARRO";
-        }else if (view.getId() == btnMoto.getId()){
+        } else if (view.getId() == btnMoto.getId()) {
             tipo = "MOTO";
-        }else if(view.getId() == btnCaminhao.getId()){
+        } else if (view.getId() == btnCaminhao.getId()) {
             tipo = "CAMINHAO";
-        }else{
+        } else {
             tipo = "ONIBUS";
         }
         return tipo;
     }
 
 
-
-
-
-
-    public  boolean placaVeiculadoValida(String placa){
-     return Pattern.compile("[a-zA-Z]{3}[0-9]{4}").matcher(placa).matches();
+    public boolean placaVeiculadoValida(String placa) {
+        return Pattern.compile("[a-zA-Z]{3}[0-9]{4}").matcher(placa).matches();
     }
 }
