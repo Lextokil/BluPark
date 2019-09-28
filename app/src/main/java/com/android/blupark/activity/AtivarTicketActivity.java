@@ -6,6 +6,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.service.autofill.RegexValidator;
 import android.util.Log;
@@ -18,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.android.blupark.R;
 import com.android.blupark.adapter.VeiculoRow;
@@ -25,7 +29,11 @@ import com.android.blupark.adapter.VeiculoRowAdapater;
 import com.android.blupark.helper.Permissoes;
 import com.android.blupark.helper.UsuarioHelper;
 import com.android.blupark.helper.VeiculoHelper;
+import com.android.blupark.model.Ticket;
 import com.android.blupark.model.Veiculo;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,10 +50,14 @@ public class AtivarTicketActivity extends AppCompatActivity {
     private ArrayList<VeiculoRow> mVeiculosList;
     private VeiculoRowAdapater mAdapter;
     private AlertDialog alerta;
+    private LocationManager locationManager;
+    private LocationListener locationListener;
+    private LatLng meulocal;
 
     private String[] permissoes = new String[]{
             Manifest.permission.ACCESS_FINE_LOCATION
     };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +70,10 @@ public class AtivarTicketActivity extends AppCompatActivity {
         Permissoes.validarPermissoes(permissoes, this, 1);
 
         mAdapter = new VeiculoRowAdapater(this, mVeiculosList);
-
-
         spinner.setAdapter(mAdapter);
+
+        //Pegar a localização do usuario e armazenar
+        getLocalizacao();
 
 
         btnAtivarTicket = findViewById(R.id.btnAtivarTicket);
@@ -73,6 +86,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
                 builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
                         decreaseTicketByOne();
                     }
                 });
@@ -92,14 +106,14 @@ public class AtivarTicketActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        for(int permissaoResultado : grantResults){
-            if(permissaoResultado == PackageManager.PERMISSION_DENIED){
+        for (int permissaoResultado : grantResults) {
+            if (permissaoResultado == PackageManager.PERMISSION_DENIED) {
                 alertaValidacaoPermissao();
             }
         }
     }
 
-    public void alertaValidacaoPermissao(){
+    public void alertaValidacaoPermissao() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Permissões Negadas");
         builder.setMessage("Para ativar o ticket é necessário aceitar as permissões");
@@ -181,6 +195,8 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
         UsuarioHelper.isTicketAtivo = true;
         int index = spinner.getSelectedItemPosition();
+        long endtime;
+        String nomeParaMapa;
 
         UsuarioHelper.veiculo = UsuarioHelper.veiculos.get(index);
 
@@ -189,14 +205,73 @@ public class AtivarTicketActivity extends AppCompatActivity {
         editor.clear();
         editor.putLong("millisLeft", 60000);
         editor.putBoolean("timerRunning", UsuarioHelper.isTicketAtivo);
-        editor.putLong("endTime", (System.currentTimeMillis() + 60000));
+        endtime = System.currentTimeMillis() + 60000;
+        editor.putLong("endTime", (endtime));
         editor.putInt("index", index);
         editor.apply();
+
+        //Salvar os dados no banco
+        postTicket((UsuarioHelper.veiculo.getModelo() + " - " + UsuarioHelper.veiculo.getPlaca()), endtime);
         UsuarioHelper.toDashBoardActivity(AtivarTicketActivity.this);
+
+
 
     }
 
+    public void postTicket(String veiculo, Long endtime) {
+        Ticket ticketAtivo = new Ticket();
+        ticketAtivo.setVeiculo(veiculo);
+        ticketAtivo.setLatitude(meulocal.latitude);
+        ticketAtivo.setLongitute(meulocal.longitude);
+        ticketAtivo.setEndTicketTime(endtime);
+        ticketAtivo.salvarTicket();
+    }
+
+    public void getLocalizacao() {
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        locationListener = new LocationListener() {
+
+            @Override
+            public void onLocationChanged(Location location) {
+                UsuarioHelper.latitude = location.getLatitude();
+                UsuarioHelper.longitute = location.getLongitude();
+                meulocal = new LatLng(UsuarioHelper.latitude, UsuarioHelper.longitute);
+
+                // Add a marker in Sydney and move the camera
 
 
+            }
+
+
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String s) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String s) {
+
+            }
+        };
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            locationManager.requestLocationUpdates(
+                    LocationManager.GPS_PROVIDER,
+                    10000,
+                    10,
+                    locationListener
+            );
+
+        }
+
+    }
 
 }
+
+
+
+
