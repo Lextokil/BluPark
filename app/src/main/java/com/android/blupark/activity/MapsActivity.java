@@ -66,7 +66,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         usuarioId = UsuarioHelper.getIDUsuarioAtual();
 
 
-        ticketsRef.child(usuarioId).addValueEventListener(new ValueEventListener() {
+        ticketsRef.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -74,14 +74,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 for (DataSnapshot dados: dataSnapshot.getChildren()){
                     Log.i("dados", "Retorno "+ dados.toString());
                     Ticket ticket = dados.getValue(Ticket.class);
-                    LatLng point = new LatLng(ticket.getLatitude(),ticket.getLongitute());
-                    mMap.addMarker(
-                            new MarkerOptions().
-                                    position(point).
-                                    title(ticket.getVeiculo())//.icon(BitmapDescriptorFactory.fromResource(R.drawable.bluparklogo))
-                    ); mMap.moveCamera(
-                            CameraUpdateFactory.newLatLngZoom(point, 20)
-                    );
+
+                    //VERIFICA SE O TICKET DA DATABASE JA NÃO PASSOU DO TEMPO SE JA PASSOU DELETA
+                    if(!(ticket.getEndTicketTime() - System.currentTimeMillis() < 0)){
+                        LatLng point = new LatLng(ticket.getLatitude(),ticket.getLongitute());
+                        mMap.addMarker(
+                                new MarkerOptions().
+                                        position(point).
+                                        title(ticket.getVeiculo())//.icon(BitmapDescriptorFactory.fromResource(R.drawable.bluparklogo))
+                        ); mMap.moveCamera(
+                                CameraUpdateFactory.newLatLngZoom(point, 20)
+                        );
+                    }else{
+                       // dados.getRef().removeValue();
+                    }
+
 
                 }
 

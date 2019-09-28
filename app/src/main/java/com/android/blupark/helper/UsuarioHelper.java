@@ -33,6 +33,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.core.view.View;
 
@@ -130,6 +131,25 @@ public class UsuarioHelper {
             }
         });
 
+
+    }
+    public static void deletTicket(String placaModelo){
+
+        DatabaseReference ticketsRef = FirebaseDatabase.getInstance().getReference();
+        Query removeTicket = ticketsRef.child("tickets").orderByChild("veiculo").equalTo(placaModelo);
+        removeTicket.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ticketSnapshot: dataSnapshot.getChildren()) {
+                    ticketSnapshot.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 

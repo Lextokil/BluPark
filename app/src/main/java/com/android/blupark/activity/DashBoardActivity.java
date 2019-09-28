@@ -40,11 +40,13 @@ public class DashBoardActivity extends AppCompatActivity {
     private long mTimeLeftMillis = START_TIME_IN_MILLIS;
     private long mEndTime;
 
+
     private TextView qtdTickets, textPlaca, textModelo, textTimer;
     private LinearLayout ticketsLayout;
     private Button btnFinalizar, btnAtivarTicket, btnMaps;
     private ImageView iconVeiculo;
     private int indexVeiculo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +75,6 @@ public class DashBoardActivity extends AppCompatActivity {
         });
 
 
-
         btnFinalizar = findViewById(R.id.btnFinalizar);
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +82,9 @@ public class DashBoardActivity extends AppCompatActivity {
                 resetTimer();
 
                 isTicketActive();
+                //METODO PARA EXCLUIR O TICKET DA DATABASE
+               /* String ticketDeletado = UsuarioHelper.veiculo.getModelo() + " - " + UsuarioHelper.veiculo.getPlaca();
+                UsuarioHelper.deletTicket(ticketDeletado);*/
             }
         });
 
@@ -88,7 +92,6 @@ public class DashBoardActivity extends AppCompatActivity {
         isTicketActive();
 
     }
-
 
 
     @Override
@@ -102,17 +105,16 @@ public class DashBoardActivity extends AppCompatActivity {
         mTimerRunning = prefs.getBoolean("timerRunning", false);
         indexVeiculo = prefs.getInt("index", 0);
         UsuarioHelper.isTicketAtivo = mTimerRunning;
-        Log.i("Veiculos", "1 Index Array : "+ indexVeiculo);
-        if(mTimerRunning){
+        if (mTimerRunning) {
             mEndTime = prefs.getLong("endTime", 0);
             mTimeLeftMillis = mEndTime - System.currentTimeMillis();
-            if(mTimeLeftMillis < 0){
+            if (mTimeLeftMillis < 0) {
                 mTimeLeftMillis = 0;
                 mTimerRunning = false;
                 UsuarioHelper.isTicketAtivo = mTimerRunning;
                 updateTempoTicket();
 
-            }else{
+            } else {
                 startTimer();
             }
 
@@ -134,9 +136,9 @@ public class DashBoardActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.clear();
-        editor.putLong("millisLeft",mTimeLeftMillis);
+        editor.putLong("millisLeft", mTimeLeftMillis);
         editor.putBoolean("timerRunning", mTimerRunning);
-        editor.putLong("endTime",mEndTime);
+        editor.putLong("endTime", mEndTime);
         editor.putInt("index", indexVeiculo);
 
         editor.apply();
@@ -145,7 +147,7 @@ public class DashBoardActivity extends AppCompatActivity {
     }
 
     //Pega os veiculos que o usuario tem cadastrado
-    public void GetVeiculos(){
+    public void GetVeiculos() {
         String usuarioId;
         usuarioId = UsuarioHelper.getIDUsuarioAtual();
 
@@ -155,8 +157,8 @@ public class DashBoardActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 UsuarioHelper.veiculos.clear();
-                for (DataSnapshot dados: dataSnapshot.getChildren()){
-                    Log.i("dados", "Retorno "+ dados.toString());
+                for (DataSnapshot dados : dataSnapshot.getChildren()) {
+                    Log.i("dados", "Retorno " + dados.toString());
                     Veiculo veiculo = dados.getValue(Veiculo.class);
                     UsuarioHelper.veiculos.add(veiculo);
                 }
@@ -172,15 +174,15 @@ public class DashBoardActivity extends AppCompatActivity {
     }
 
     //Atualiza a quantidade de tickets disponíveis do usuario
-    public void GetTickets(){
+    public void GetTickets() {
 
-         usuarioRef.child(UsuarioHelper.getIDUsuarioAtual()).addValueEventListener(new ValueEventListener() {
+        usuarioRef.child(UsuarioHelper.getIDUsuarioAtual()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Usuario usuario = dataSnapshot.getValue(Usuario.class);
 
 
-                qtdTickets.setText("Tickets disponíveis: "+ usuario.getQtdTickets());
+                qtdTickets.setText("Tickets disponíveis: " + usuario.getQtdTickets());
             }
 
             @Override
@@ -193,15 +195,15 @@ public class DashBoardActivity extends AppCompatActivity {
     }
 
     //Leva para tela de Compra de tickets
-    public void ToCompraTickesActivity(View view){
+    public void ToCompraTickesActivity(View view) {
         UsuarioHelper.toCompraTicketsActivity(this);
     }
 
-    public void ToCadastroVeiculos(View view){
+    public void ToCadastroVeiculos(View view) {
         UsuarioHelper.toCadastroVeiculoActivity(this);
     }
 
-    private void startTimer(){
+    private void startTimer() {
         mEndTime = System.currentTimeMillis() + mTimeLeftMillis;
 
         mCountDownTimer = new CountDownTimer(mTimeLeftMillis, 1000) {
@@ -223,60 +225,61 @@ public class DashBoardActivity extends AppCompatActivity {
     }
 
 
-    private void pauseTimer(){
-        mCountDownTimer.cancel();
-        mTimerRunning = false;
-
-    }
-
-    private void resetTimer(){
+    private void resetTimer() {
         mTimerRunning = false;
         mTimeLeftMillis = START_TIME_IN_MILLIS;
         UsuarioHelper.isTicketAtivo = mTimerRunning;
         updateTempoTicket();
 
 
-
-
     }
 
-    private void updateTempoTicket(){
-        int minutos = (int) (mTimeLeftMillis / 1000) /60;
+    private void updateTempoTicket() {
+        int minutos = (int) (mTimeLeftMillis / 1000) / 60;
         int segundos = (int) (mTimeLeftMillis / 1000) % 60;
-        String timeLeftFormatted = String.format(Locale.getDefault(),"%02d:%02d",minutos,segundos);
+        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutos, segundos);
         textTimer.setText(timeLeftFormatted);
     }
 
-    private void  isTicketActive(){
-        if (UsuarioHelper.isTicketAtivo){
+    private void isTicketActive() {
+        if (UsuarioHelper.isTicketAtivo) {
             ticketsLayout.setVisibility(View.VISIBLE);
             updateTicketComponents();
             startTimer();
-        }else{
+        } else {
             ticketsLayout.setVisibility(View.INVISIBLE);
+
+            //METODO PARA EXCLUIR O TICKET DA DATABASE QUANDO FINALIZAR O SEU TEMPO
+            /*try {
+                String ticketDeletado = UsuarioHelper.veiculo.getModelo() + " - " + UsuarioHelper.veiculo.getPlaca();
+                UsuarioHelper.deletTicket(ticketDeletado);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }*/
+
 
         }
     }
 
-    private void updateTicketComponents(){
+    private void updateTicketComponents() {
         try {
             UsuarioHelper.veiculo = UsuarioHelper.veiculos.get(indexVeiculo);
-            if (UsuarioHelper.veiculo.getModelo().length() > 10 ){
-                textModelo.setText(UsuarioHelper.veiculo.getModelo().substring(0,10));
-            }else{
+            if (UsuarioHelper.veiculo.getModelo().length() > 10) {
+                textModelo.setText(UsuarioHelper.veiculo.getModelo().substring(0, 10));
+            } else {
                 textModelo.setText(UsuarioHelper.veiculo.getModelo());
             }
 
             textPlaca.setText(UsuarioHelper.veiculo.getPlaca());
             iconVeiculo.setImageResource(VeiculoHelper.GetIconTipe(UsuarioHelper.veiculo.getTipo()));
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
     }
 
-    public void veiculosCadastrados(View view){
+    public void veiculosCadastrados(View view) {
         UsuarioHelper.toVeiculosCadastrados(this);
     }
 }

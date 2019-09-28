@@ -196,7 +196,6 @@ public class AtivarTicketActivity extends AppCompatActivity {
         UsuarioHelper.isTicketAtivo = true;
         int index = spinner.getSelectedItemPosition();
         long endtime;
-        String nomeParaMapa;
 
         UsuarioHelper.veiculo = UsuarioHelper.veiculos.get(index);
 
@@ -206,6 +205,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
         editor.putLong("millisLeft", 60000);
         editor.putBoolean("timerRunning", UsuarioHelper.isTicketAtivo);
         endtime = System.currentTimeMillis() + 60000;
+        Log.i("endtime", "Endtime : "+ endtime);
         editor.putLong("endTime", (endtime));
         editor.putInt("index", index);
         editor.apply();
@@ -236,9 +236,6 @@ public class AtivarTicketActivity extends AppCompatActivity {
                 UsuarioHelper.latitude = location.getLatitude();
                 UsuarioHelper.longitute = location.getLongitude();
                 meulocal = new LatLng(UsuarioHelper.latitude, UsuarioHelper.longitute);
-
-                // Add a marker in Sydney and move the camera
-
 
             }
 

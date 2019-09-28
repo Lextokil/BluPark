@@ -15,7 +15,7 @@ public class Ticket {
 
     public void salvarTicket(){
         DatabaseReference firebaseRef = ConfiguracaoFireBase.getFireBaseDataBase();
-        DatabaseReference tickets = firebaseRef.child("tickets").child(UsuarioHelper.getIDUsuarioAtual()).push();
+        DatabaseReference tickets = firebaseRef.child("tickets").push();
         tickets.setValue(this);
     }
 
