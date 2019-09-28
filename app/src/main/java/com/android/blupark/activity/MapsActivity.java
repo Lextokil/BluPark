@@ -75,19 +75,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Log.i("dados", "Retorno "+ dados.toString());
                     Ticket ticket = dados.getValue(Ticket.class);
 
+                    LatLng point = new LatLng(ticket.getLatitude(),ticket.getLongitute());
+                    mMap.addMarker(
+                            new MarkerOptions().
+                                    position(point).
+                                    title(ticket.getVeiculo()).
+                                    icon(BitmapDescriptorFactory.fromResource(R.drawable.blupark_pin))
+                    ); mMap.moveCamera(
+                            CameraUpdateFactory.newLatLngZoom(point, 30)
+                    );
+
                     //VERIFICA SE O TICKET DA DATABASE JA NÃO PASSOU DO TEMPO SE JA PASSOU DELETA
-                    if(!(ticket.getEndTicketTime() - System.currentTimeMillis() < 0)){
+                    /*if(!(ticket.getEndTicketTime() - System.currentTimeMillis() < 0)){
                         LatLng point = new LatLng(ticket.getLatitude(),ticket.getLongitute());
                         mMap.addMarker(
                                 new MarkerOptions().
                                         position(point).
                                         title(ticket.getVeiculo())//.icon(BitmapDescriptorFactory.fromResource(R.drawable.bluparklogo))
                         ); mMap.moveCamera(
-                                CameraUpdateFactory.newLatLngZoom(point, 20)
+                                CameraUpdateFactory.newLatLngZoom(point, 30)
                         );
                     }else{
-                       // dados.getRef().removeValue();
-                    }
+                        dados.getRef().removeValue();
+                    }*/
 
 
                 }
