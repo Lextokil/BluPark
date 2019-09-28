@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.blupark">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -11,20 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.VeiculosCadastrados"
-            android:logo="@drawable/bluparklogohorizontal"
-            android:parentActivityName=".activity.DashBoardActivity"/>
-        <activity android:name=".activity.AtivarTicketActivity"
-            android:label="Ativar Tickets"
-            android:parentActivityName=".activity.DashBoardActivity"/>
-        <activity android:name=".activity.CompraTicketsActivity"
-            android:label="Comprar Tickets"
-            android:parentActivityName=".activity.DashBoardActivity"/>
-        <activity android:name=".activity.CadastroVeiculoActivity"
-            android:label="Cadatrar um veículo"
-            android:parentActivityName=".activity.DashBoardActivity"/>
-        <activity android:name=".activity.DashBoardActivity"
-            android:label="@string/title_activity_dash_board"/>
         <activity
             android:name=".activity.CadastroActivity"
             android:label="@string/title_Cadastro"
@@ -33,7 +20,26 @@
             android:name=".activity.LoginActivity"
             android:label="@string/title_Login"
             android:parentActivityName=".activity.MainActivity" />
-        <activity android:name=".activity.MapsActivity" />
+        <activity
+            android:name=".activity.VeiculosCadastrados"
+            android:logo="@drawable/bluparklogohorizontal"
+            android:parentActivityName=".activity.DashBoardActivity" />
+        <activity
+            android:name=".activity.AtivarTicketActivity"
+            android:label="Ativar Tickets"
+            android:parentActivityName=".activity.DashBoardActivity" />
+        <activity
+            android:name=".activity.CompraTicketsActivity"
+            android:label="Comprar Tickets"
+            android:parentActivityName=".activity.DashBoardActivity" />
+        <activity
+            android:name=".activity.CadastroVeiculoActivity"
+            android:label="Cadatrar um veículo"
+            android:parentActivityName=".activity.DashBoardActivity" />
+        <activity
+            android:name=".activity.DashBoardActivity" />
+        <activity
+            android:name=".activity.MapsActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

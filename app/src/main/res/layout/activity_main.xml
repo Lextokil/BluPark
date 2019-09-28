@@ -9,26 +9,27 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="321dp"
-        android:layout_height="54dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="200dp"
-        android:background="#00BEB2B2"
-        android:orientation="horizontal"
+        android:layout_marginBottom="40dp"
+        android:gravity="center"
+        android:orientation="vertical"
         android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
         <Button
             android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="4dp"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
             android:layout_weight="1.3"
             android:background="@drawable/btn_style_azul"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/roboto_condensed_bold"
             android:onClick="abrirTelaLogin"
             android:text="Entrar"
             android:textAllCaps="false"
@@ -37,11 +38,12 @@
 
         <Button
             android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@drawable/btn_style_laranja"
+            android:fontFamily="@font/roboto_condensed_bold"
             android:onClick="abrirTelaCadastro"
             android:text="Cadastrar"
             android:textAllCaps="false"
@@ -54,13 +56,45 @@
         android:layout_width="316dp"
         android:layout_height="265dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/bluparklogo" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="54dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:text="BluPark é a digitalização da Área Azul."
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="50dp"
+            android:text="Valide seu veículo estacionado, compre tickets e tenha maior controle do tempo estacionado."
+            android:textAlignment="center"
+            android:textSize="12sp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

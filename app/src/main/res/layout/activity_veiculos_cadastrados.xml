@@ -6,19 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".activity.VeiculosCadastrados">
 
+    <LinearLayout
+        android:id="@+id/linearLayout13"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerVeiculos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:text="Lista de veículos cadastrados:"
+            android:textAllCaps="false"
+            android:textColor="#616263"
+            android:textSize="22sp" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerVeiculos"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="260dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="215dp"
+        android:background="#CDF0F0F0"
+        app:layout_constraintBottom_toTopOf="@+id/imageView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout13" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerteste"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="132dp"
-        tools:layout_editor_absoluteY="177dp" />
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerVeiculos"
+        app:srcCompat="@drawable/bluparklogohorizontal" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
