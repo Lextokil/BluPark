@@ -16,6 +16,7 @@ import com.android.blupark.activity.AtivarTicketActivity;
 import com.android.blupark.activity.CadastroVeiculoActivity;
 import com.android.blupark.activity.CompraTicketsActivity;
 import com.android.blupark.activity.DashBoardActivity;
+import com.android.blupark.activity.LoadingLoginToDashboard;
 import com.android.blupark.activity.MapsActivity;
 import com.android.blupark.activity.VeiculosCadastrados;
 import com.android.blupark.config.ConfiguracaoFireBase;
@@ -105,6 +106,11 @@ public class UsuarioHelper {
     //veículos teste
     public static void toVeiculosCadastrados(final Activity activity){
         Intent i = new Intent(activity, VeiculosCadastrados.class);
+        activity.startActivity(i);
+    }
+    //Loading do Login pra Dashboard
+    public static void toLoadingLoginToDashboard(final Activity activity){
+        Intent i = new Intent(activity, LoadingLoginToDashboard.class);
         activity.startActivity(i);
     }
 
