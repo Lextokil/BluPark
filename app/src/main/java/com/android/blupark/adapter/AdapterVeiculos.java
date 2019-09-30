@@ -48,12 +48,6 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
         holder.placa.setText(veiculos.getPlaca());
         holder.modelo.setText(veiculos.getModelo());
         holder.tipo.setText(veiculos.getTipo());
-        holder.btnExcluirVEiculo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
     }
 
@@ -80,9 +74,8 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
                 public void onClick(View view) {
                     excluirVeiculo();
                 }
+
             });
-
-
 
         }
         public void excluirVeiculo (){
@@ -91,16 +84,20 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
             veiculosRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for (DataSnapshot dataVeiculo : dataSnapshot.getChildren()){
+                    for (DataSnapshot dataVeiculo : dataSnapshot.getChildren()) {
 
                         Veiculo veiculoDelete = dataVeiculo.getValue(Veiculo.class);
 
-                        if(veiculoDelete.getPlaca().equalsIgnoreCase(placa.getText().toString())){
+                        UsuarioHelper.veiculos.clear();
+                        if (veiculoDelete.getPlaca().equalsIgnoreCase(placa.getText().toString())) {
                             dataVeiculo.getRef().removeValue();
-                        };
-
+                        } else {
+                            UsuarioHelper.veiculos.add(veiculoDelete);
+                        }
 
                     }
+
+                    notifyDataSetChanged();
                 }
 
                 @Override
