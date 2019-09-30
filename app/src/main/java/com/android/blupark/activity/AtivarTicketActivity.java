@@ -73,7 +73,9 @@ public class AtivarTicketActivity extends AppCompatActivity {
         spinner.setAdapter(mAdapter);
 
         //Pegar a localização do usuario e armazenar
-        getLocalizacao();
+
+        // Comentado para teste do getLocalizaoComLoading
+        // getLocalizacao();
 
 
         btnAtivarTicket = findViewById(R.id.btnAtivarTicket);
@@ -192,6 +194,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
     public void activateTicket() {
 
+        getLocalizacaoComLoading();
 
         UsuarioHelper.isTicketAtivo = true;
         int index = spinner.getSelectedItemPosition();
@@ -228,8 +231,11 @@ public class AtivarTicketActivity extends AppCompatActivity {
     }
 
     public void getLocalizacao() {
+
+        UsuarioHelper.toAtivarTicketsActivity(AtivarTicketActivity.this);
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
+
 
             @Override
             public void onLocationChanged(Location location) {
@@ -267,6 +273,27 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
     }
 
+    public void getLocalizacaoComLoading() {
+
+
+        Thread thr1 = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    getLocalizacao();
+                    UsuarioHelper.toLoadingTicketToDashboard(AtivarTicketActivity.this);
+
+                    while(UsuarioHelper.getLongitute() == 0 && UsuarioHelper.getLatitude() == 0) {
+                        getLocalizacao();
+                        UsuarioHelper.toLoadingTicketToDashboard(AtivarTicketActivity.this);
+                    }
+                }catch (Exception ex) {
+                    System.out.println(ex);
+                }
+            }
+        };
+
+    }
 }
 
 

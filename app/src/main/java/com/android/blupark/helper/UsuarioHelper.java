@@ -17,6 +17,7 @@ import com.android.blupark.activity.CadastroVeiculoActivity;
 import com.android.blupark.activity.CompraTicketsActivity;
 import com.android.blupark.activity.DashBoardActivity;
 import com.android.blupark.activity.LoadingLoginToDashboard;
+import com.android.blupark.activity.LoadingTicketToDashboard;
 import com.android.blupark.activity.MapsActivity;
 import com.android.blupark.activity.VeiculosCadastrados;
 import com.android.blupark.config.ConfiguracaoFireBase;
@@ -47,11 +48,16 @@ public class UsuarioHelper {
     public static Veiculo veiculo;
     public static ArrayList<Veiculo> veiculos = new ArrayList<>();
     public static LatLng meulocal ;
-    public static double latitude;
-    public static double longitute;
+    public static double latitude = 0;
+    public static double longitute = 0;
 
+    public static double getLatitude() {
+        return latitude;
+    }
 
-
+    public static double getLongitute() {
+        return longitute;
+    }
 
     public static FirebaseUser getUsuarioAtual(){
         FirebaseAuth usuario = ConfiguracaoFireBase.getFireBaseAutenticacao();
@@ -111,6 +117,11 @@ public class UsuarioHelper {
     //Loading do Login pra Dashboard
     public static void toLoadingLoginToDashboard(final Activity activity){
         Intent i = new Intent(activity, LoadingLoginToDashboard.class);
+        activity.startActivity(i);
+    }
+    //Loading para pegar localização
+    public static void toLoadingTicketToDashboard(final Activity activity){
+        Intent i = new Intent(activity, LoadingTicketToDashboard.class);
         activity.startActivity(i);
     }
 
