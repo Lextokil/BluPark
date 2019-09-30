@@ -24,6 +24,8 @@ public class VeiculosCadastrados extends AppCompatActivity {
         //Config Adapter
         AdapterVeiculos adapter = new AdapterVeiculos(UsuarioHelper.veiculos );
 
+
+
         //Config RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerVeiculos.setLayoutManager(layoutManager);

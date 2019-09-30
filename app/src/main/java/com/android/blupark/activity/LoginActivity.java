@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                usuario.setSenha(textoSenha);
                logarUsuario(usuario);
            }else{
-               Toast.makeText(LoginActivity.this,"Preencha a Senha !",
+               Toast.makeText(LoginActivity.this,"Preencha a Senha!",
                        Toast.LENGTH_SHORT).show();
            }
 
@@ -76,11 +76,11 @@ public class LoginActivity extends AppCompatActivity {
                     try {
                         throw task.getException();
                     }catch (FirebaseAuthInvalidUserException e){
-                        excecao = "Usuário não está cadastrado";
+                        excecao = "Usuário não está cadastrado!";
                     }catch (FirebaseAuthInvalidCredentialsException e){
-                        excecao = "E-mail e senha não correspondem a um usuario válido";
+                        excecao = "E-mail e senha não correspondem a um usuario válido!";
                     }catch (Exception e){
-                        excecao = "Erro ao efetuar o login. "+ e.getMessage();
+                        excecao = "Erro ao efetuar o login."+ e.getMessage();
                     }
                     Toast.makeText(LoginActivity.this,excecao,
                             Toast.LENGTH_SHORT).show();
