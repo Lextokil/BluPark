@@ -54,21 +54,21 @@ public class CadastroActivity extends AppCompatActivity {
 
                     }else{
                         Toast.makeText(CadastroActivity.this,
-                                "Preencha a senha", Toast.LENGTH_SHORT).show();
+                                "Preencha a senha!", Toast.LENGTH_SHORT).show();
                     }
 
                 }else{
                     Toast.makeText(CadastroActivity.this,
-                            "Senhas Diferentes", Toast.LENGTH_SHORT).show();
+                            "Senhas Diferentes!", Toast.LENGTH_SHORT).show();
                 }
 
             }else{
                 Toast.makeText(CadastroActivity.this,
-                        "Preencha o E-mail", Toast.LENGTH_SHORT).show();
+                        "Preencha o E-mail!", Toast.LENGTH_SHORT).show();
             }
         }else{
             Toast.makeText(CadastroActivity.this,
-                    "Preencha o Nome", Toast.LENGTH_SHORT).show();
+                    "Preencha o Nome!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -115,11 +115,11 @@ public class CadastroActivity extends AppCompatActivity {
                     }catch ( FirebaseAuthWeakPasswordException e){
                         excecao = "Digite uma senha mais forte!";
                     }catch(FirebaseAuthInvalidCredentialsException e){
-                        excecao = "Por favor digite um e-mail valido";
+                        excecao = "Por favor, digite um e-mail válido!";
                     }catch(FirebaseAuthUserCollisionException e){
-                        excecao = "Esta conta ja foi cadastrada!";
+                        excecao = "Esta conta já está cadastrada!";
                     }catch(Exception e){
-                        excecao = "Erro ao cadastrar usuário." + e.getMessage();
+                        excecao = "Erro ao cadastrar usuário!" + e.getMessage();
                         e.printStackTrace();
                     }
                     Toast.makeText(CadastroActivity.this, excecao,

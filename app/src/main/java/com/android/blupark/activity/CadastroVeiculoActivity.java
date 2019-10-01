@@ -85,12 +85,12 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
 
             } else {
                 Toast.makeText(CadastroVeiculoActivity.this,
-                        "Preencha o modelo do veículo", Toast.LENGTH_LONG).show();
+                        "Preencha o modelo do veículo!", Toast.LENGTH_LONG).show();
             }
 
         } else {
             Toast.makeText(CadastroVeiculoActivity.this,
-                    "Selecione um tipo de veículo!", Toast.LENGTH_LONG).show();
+                    "Selecione o tipo de veículo!", Toast.LENGTH_LONG).show();
         }
     }
 

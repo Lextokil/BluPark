@@ -79,8 +79,6 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
 
         }
         public void excluirVeiculo (){
-
-
             veiculosRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
