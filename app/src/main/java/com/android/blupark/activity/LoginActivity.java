@@ -66,9 +66,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
 
-                    UsuarioHelper.toLoadingLoginToDashboard(LoginActivity.this);
-                     //UsuarioHelper.toDashBoardActivity(LoginActivity.this);
-                     //UsuarioHelper.toCadastroVeiculoActivity(LoginActivity.this);
+                     UsuarioHelper.toLoadingLoginToDashboard(LoginActivity.this);
 
 
                 }else {

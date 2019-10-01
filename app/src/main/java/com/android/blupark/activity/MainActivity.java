@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser user = UsuarioHelper.getUsuarioAtual();
         if (user != null){
-             UsuarioHelper.toDashBoardActivity(this);
+            //UsuarioHelper.toDashBoardActivity(this);
             // UsuarioHelper.toCompraTicketsActivity(this);
 
 

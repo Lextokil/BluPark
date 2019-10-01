@@ -75,7 +75,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
         //Pegar a localização do usuario e armazenar
 
         // Comentado para teste do getLocalizaoComLoading
-        // getLocalizacao();
+         getLocalizacao();
 
 
         btnAtivarTicket = findViewById(R.id.btnAtivarTicket);
@@ -88,8 +88,30 @@ public class AtivarTicketActivity extends AppCompatActivity {
                 builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        Thread myThread = new Thread() {
+                            @Override
+                            public void run() {
+                               do {try {
+                                   sleep(1000);
+                               }catch (Exception e){
 
-                        decreaseTicketByOne();
+                               }
+
+                               }while (UsuarioHelper.latitude == 0 && UsuarioHelper.longitute == 0);
+
+                                    decreaseTicketByOne();
+
+                            }
+
+                        };
+                        myThread.start();
+                        UsuarioHelper.toLoadingTicketToDashboard(AtivarTicketActivity.this);
+                        /*if(UsuarioHelper.latitude != 0 && UsuarioHelper.longitute != 0){
+                            decreaseTicketByOne();
+                        }else{
+                            Toast.makeText(AtivarTicketActivity.this, "Estamos pegando sua localização aguarde um momento e tente novamente!", Toast.LENGTH_LONG).show();
+                        }*/
+
                     }
                 });
                 builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -157,7 +179,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
     public void decreaseTicketByOne() {
         final DatabaseReference ticketsRef = FirebaseDatabase.getInstance().getReference("usuarios")
                 .child(UsuarioHelper.getIDUsuarioAtual()).child("qtdTickets");
-        boolean condition = false;
+
 
         ticketsRef.addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -194,7 +216,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
     public void activateTicket() {
 
-        getLocalizacaoComLoading();
+        //getLocalizacaoComLoading();
 
         UsuarioHelper.isTicketAtivo = true;
         int index = spinner.getSelectedItemPosition();
@@ -232,7 +254,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
     public void getLocalizacao() {
 
-        UsuarioHelper.toAtivarTicketsActivity(AtivarTicketActivity.this);
+
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
 
@@ -270,6 +292,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
             );
 
         }
+
 
     }
 

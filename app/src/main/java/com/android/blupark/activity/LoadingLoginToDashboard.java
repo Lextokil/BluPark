@@ -27,8 +27,8 @@ public class LoadingLoginToDashboard extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    sleep(5000);
                     Intent intent = new Intent(getApplicationContext(), DashBoardActivity.class);
+                    sleep(5000);
                     startActivity(intent);
                     finish();
                 } catch (InterruptedException e) {
