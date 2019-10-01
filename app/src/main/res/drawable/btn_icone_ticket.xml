@@ -3,6 +3,7 @@
 
     <item
         android:drawable="@drawable/icone_ticket"
+        android:gravity="right"
         android:width="20dp"
         android:height="20dp"
         android:left="5dp" />

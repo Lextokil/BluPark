@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context=".activity.DashBoardActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,13 +20,15 @@
 
         <TextView
             android:id="@+id/textTicketsDisponiveis"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="22dp"
-            android:drawableLeft="@drawable/btn_icone_ticket"
+            android:layout_marginStart="46dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="46dp"
+            android:layout_marginBottom="18dp"
             android:fontFamily="@font/roboto_condensed_bold"
             android:text="Tickets Diponiveis: 0"
+            android:textAlignment="center"
             android:textColor="#3F423F"
             android:textSize="20dp" />
 
@@ -34,8 +36,7 @@
             android:id="@+id/btnComprarTickets"
             android:layout_width="200dp"
             android:layout_height="36dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="18dp"
             android:background="@drawable/btn_style_dashboard_comprar"
             android:drawableLeft="@drawable/btn_icone_adicionar"
             android:fontFamily="@font/roboto_condensed_bold"
@@ -48,7 +49,6 @@
 
     <LinearLayout
         android:id="@+id/ticketLayout"
-        android:background="#FFF"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -61,16 +61,19 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="38dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="46dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="38dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="46dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/btn_style_dashboard_veiculo_ativo"
             android:fontFamily="@font/roboto_condensed_bold"
-            android:text="Tickets Ativos - Alertas"
+            android:gravity="center"
+            android:text="TICKET ATIVO"
             android:textAlignment="center"
-            android:textColor="#3F423F"
-            android:textSize="20dp"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -85,25 +88,26 @@
                 android:layout_width="137dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="46dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_style_dashboard_veiculo_ativo">
 
                 <ImageView
                     android:id="@+id/iconveiculo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="2dp"
                     android:paddingLeft="4dp"
-                    android:paddingTop="4dp"
+                    android:paddingTop="6dp"
                     android:paddingBottom="4dp"
-                    app:srcCompat="@drawable/iconcarro" />
+                    app:srcCompat="@drawable/car_icon" />
 
                 <TextView
                     android:id="@+id/textModelo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_condensed_bold"
-                    android:paddingLeft="48dp"
+                    android:paddingLeft="46dp"
                     android:paddingTop="3dp"
                     android:text="Modelo"
                     android:textColor="#FFF"
@@ -114,12 +118,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_condensed_bold"
-                    android:paddingLeft="48dp"
-                    android:paddingTop="18dp"
+                    android:paddingLeft="46dp"
+                    android:paddingTop="20dp"
                     android:text="Placa"
                     android:textAlignment="viewStart"
                     android:textColor="#FFFFFF"
-                    android:textSize="14dp" />
+                    android:textSize="12dp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -130,13 +134,13 @@
                 android:background="@drawable/btn_style_dashboard_veiculo_ativo">
 
                 <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="38dp"
-                    android:layout_height="match_parent"
+                    android:id="@+id/iconeRelogio"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:paddingLeft="4dp"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
-                    app:srcCompat="@drawable/icontimer" />
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    app:srcCompat="@drawable/clock_icon" />
 
                 <TextView
                     android:id="@+id/textTimer"
@@ -148,7 +152,7 @@
                     android:text="00:00"
                     android:textAlignment="center"
                     android:textColor="#FFF"
-                    android:textSize="18sp" />
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/Restante"
@@ -156,25 +160,25 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_condensed_bold"
                     android:paddingLeft="45dp"
-                    android:paddingTop="18dp"
+                    android:paddingTop="20dp"
                     android:text="Restante"
                     android:textAlignment="center"
                     android:textColor="#FFF"
-                    android:textSize="14sp" />
+                    android:textSize="12dp" />
             </RelativeLayout>
 
         </LinearLayout>
 
         <Button
             android:id="@+id/btnFinalizar"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="36dp"
             android:layout_gravity="center"
-            android:layout_marginStart="38dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginEnd="38dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="46dp"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/btn_style_laranja"
+            android:background="@drawable/btn_style_cancelar_ticket"
             android:fontFamily="@font/roboto_condensed_bold"
             android:text="Finalizar Ticket"
             android:textAllCaps="false"
@@ -198,7 +202,6 @@
             android:id="@+id/btnIncluirVeiculos"
             android:layout_width="200dp"
             android:layout_height="36dp"
-            android:layout_marginTop="18dp"
             android:layout_marginBottom="4dp"
             android:background="@drawable/btn_style_dashboard_adicionar_veiculo"
             android:drawableLeft="@drawable/btn_icone_adicionar"
@@ -253,5 +256,14 @@
             android:visibility="visible" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:src="@drawable/bluparklogohorizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
