@@ -82,11 +82,9 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
             veiculosRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    UsuarioHelper.veiculos.clear();
                     for (DataSnapshot dataVeiculo : dataSnapshot.getChildren()) {
-
                         Veiculo veiculoDelete = dataVeiculo.getValue(Veiculo.class);
-
-                        UsuarioHelper.veiculos.clear();
                         if (veiculoDelete.getPlaca().equalsIgnoreCase(placa.getText().toString())) {
                             dataVeiculo.getRef().removeValue();
                         } else {
