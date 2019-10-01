@@ -1,15 +1,20 @@
 package com.android.blupark.adapter;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.blupark.R;
+import com.android.blupark.activity.AtivarTicketActivity;
 import com.android.blupark.activity.DashBoardActivity;
 import com.android.blupark.helper.UsuarioHelper;
 import com.android.blupark.model.Veiculo;
@@ -28,10 +33,13 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
     private DatabaseReference veiculosRef = FirebaseDatabase.getInstance().getReference("veiculos").
             child(UsuarioHelper.getIDUsuarioAtual());
 
+    private AlertDialog alerta;
+
 
 
     public AdapterVeiculos(List<Veiculo> lista) {
         UsuarioHelper.veiculos = (ArrayList<Veiculo>) lista;
+
     }
 
     @NonNull
@@ -71,8 +79,25 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
             btnExcluirVEiculo = itemView.findViewById(R.id.btnExcluirVeiculo);
             btnExcluirVEiculo.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    excluirVeiculo();
+                public void onClick(final View view) {
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(view.getRootView().getContext());
+                    alertbox.setTitle("Exclusão de veiculo");
+                    alertbox.setMessage("Deseja excluir o veiculo?");
+                    alertbox.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            excluirVeiculo();
+                        }
+                    });
+                    alertbox.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Toast.makeText(view.getRootView().getContext(), "Exclusão Cancelada!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    alerta = alertbox.create();
+                    alerta = alertbox.show();
+
                 }
 
             });
