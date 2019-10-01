@@ -81,11 +81,13 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
                 @Override
                 public void onClick(final View view) {
                     AlertDialog.Builder alertbox = new AlertDialog.Builder(view.getRootView().getContext());
-                    alertbox.setTitle("Exclusão de veiculo");
-                    alertbox.setMessage("Deseja excluir o veiculo?");
+                    alertbox.setTitle("Exclusão de veículo");
+                    alertbox.setMessage("Deseja excluir o veículo?");
                     alertbox.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            Toast.makeText(view.getRootView().getContext(), "Veículo excluído!", Toast.LENGTH_SHORT).show();
+
                             excluirVeiculo();
                         }
                     });

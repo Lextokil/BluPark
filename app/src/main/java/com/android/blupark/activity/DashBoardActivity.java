@@ -1,5 +1,7 @@
 package com.android.blupark.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,7 +49,7 @@ public class DashBoardActivity extends AppCompatActivity {
     private Button btnFinalizar, btnAtivarTicket, btnMaps;
     private ImageView iconVeiculo;
     private int indexVeiculo;
-
+    private AlertDialog alerta;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,22 +80,45 @@ public class DashBoardActivity extends AppCompatActivity {
 
         btnFinalizar = findViewById(R.id.btnFinalizar);
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view1) {
+                AlertDialog.Builder alertbox = new AlertDialog.Builder(view1.getRootView().getContext());
+                alertbox.setTitle("Finalizar Ticket");
+                alertbox.setMessage("Deseja finalizar o ticket?");
+                alertbox.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(view1.getRootView().getContext(), "Ticket Finalizado!", Toast.LENGTH_SHORT).show();
+
+                        ticketsLayout.setVisibility(View.INVISIBLE);
+                        isTicketActive();
+
+
+
+                    }
+                });
+                alertbox.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(view1.getRootView().getContext(), "Finalização cancelada!", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 resetTimer();
 
-                isTicketActive();
+                alerta = alertbox.create();
+                alerta = alertbox.show();
+
+
                 //METODO PARA EXCLUIR O TICKET DA DATABASE
                /* String ticketDeletado = UsuarioHelper.veiculo.getModelo() + " - " + UsuarioHelper.veiculo.getPlaca();
                 UsuarioHelper.deletTicket(ticketDeletado);*/
+
+
             }
+
         });
-
-        ticketsLayout.setVisibility(View.INVISIBLE);
-        isTicketActive();
-
     }
-
 
     @Override
     protected void onStart() {
