@@ -106,11 +106,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
                         };
                         myThread.start();
                         UsuarioHelper.toLoadingTicketToDashboard(AtivarTicketActivity.this);
-                        /*if(UsuarioHelper.latitude != 0 && UsuarioHelper.longitute != 0){
-                            decreaseTicketByOne();
-                        }else{
-                            Toast.makeText(AtivarTicketActivity.this, "Estamos pegando sua localização aguarde um momento e tente novamente!", Toast.LENGTH_LONG).show();
-                        }*/
+
 
                     }
                 });
@@ -216,7 +212,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
     public void activateTicket() {
 
-        //getLocalizacaoComLoading();
+
 
         UsuarioHelper.isTicketAtivo = true;
         int index = spinner.getSelectedItemPosition();
@@ -237,6 +233,8 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
         //Salvar os dados no banco
         postTicket((UsuarioHelper.veiculo.getModelo() + " - " + UsuarioHelper.veiculo.getPlaca()), endtime);
+        UsuarioHelper.latitude = 0;
+        UsuarioHelper.longitute = 0;
         UsuarioHelper.toDashBoardActivity(AtivarTicketActivity.this);
 
 

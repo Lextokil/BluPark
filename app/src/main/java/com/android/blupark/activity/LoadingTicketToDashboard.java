@@ -19,7 +19,7 @@ public class LoadingTicketToDashboard extends AppCompatActivity {
         setContentView(R.layout.activity_loading_ticket_to_dashboard);
 
         //Loading Screen
-        Thread myThread = new Thread() {
+        /*Thread myThread = new Thread() {
             @Override
             public void run() {
                 try {
@@ -31,7 +31,7 @@ public class LoadingTicketToDashboard extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        };
+        };*/
         Thread loadingThread = new Thread() {
             @Override
             public void run() {
@@ -41,7 +41,7 @@ public class LoadingTicketToDashboard extends AppCompatActivity {
             }
         };
 
-        myThread.start();
+        //myThread.start();
         loadingThread.start();
 
     }
