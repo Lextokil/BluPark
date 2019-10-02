@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background_lista_veiculos"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
@@ -13,39 +14,63 @@
 
         <TextView
             android:id="@+id/textPlaca"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="2"
             android:fontFamily="@font/roboto_condensed_bold"
             android:text="Placa"
-            android:textSize="18sp"
+            android:textAlignment="textStart"
+            android:textColor="#AE000000"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textModelo"
-            android:layout_width="wrap_content"
+            android:id="@+id/textTipo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="6dp"
             android:layout_weight="3"
-            android:fontFamily="@font/roboto_light"
-            android:text="Modelo" />
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:text="Tipo"
+            android:textAlignment="viewEnd"
+            android:textColor="#AE000000"
+            android:textSize="14sp" />
+
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textTipo"
+        android:id="@+id/textModelo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_condensed_bold"
-        android:text="Tipo" />
+        android:layout_gravity="left"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="3"
+        android:fontFamily="@font/roboto_condensed_light"
+        android:text="Modelo"
+        android:textAllCaps="false"
+        android:textColor="#AE000000"
+        android:textSize="14sp" />
 
     <Button
         android:id="@+id/btnExcluirVeiculo"
-        android:layout_width="220dp"
-        android:layout_height="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
         android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="12dp"
         android:layout_weight="10"
         android:background="@drawable/btn_style_laranja"
         android:baselineAligned="false"
         android:fontFamily="@font/roboto_condensed_bold"
         android:text="Excluir Veículo"
+        android:textAlignment="center"
         android:textColor="#FFFFFF" />
 </LinearLayout>

@@ -9,49 +9,62 @@
     <LinearLayout
         android:id="@+id/linearLayout13"
         android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_marginBottom="20dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerVeiculos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/listaVeiculosTituloHead"
+            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
             android:layout_marginTop="36dp"
+            android:layout_marginEnd="36dp"
             android:fontFamily="@font/roboto_condensed_bold"
-            android:text="Lista de veículos cadastrados:"
+            android:text="Veículos cadastrados"
             android:textAllCaps="false"
             android:textColor="#616263"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="36dp"
+            android:fontFamily="@font/roboto_condensed_light"
+            android:text="Você pode deletar qualquer veículo cadastrado, clicando no botão respectivamente abaixo do veículo que se deseja deletar." />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerVeiculos"
         android:layout_width="0dp"
-        android:layout_height="260dp"
+        android:layout_height="210dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginBottom="215dp"
-        android:background="#CDF0F0F0"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/background_box_lista_veiculos"
         app:layout_constraintBottom_toTopOf="@+id/imageView7"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout13" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout13"
+        app:layout_constraintVertical_bias="0.00999999" />
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerVeiculos"
         app:srcCompat="@drawable/bluparklogohorizontal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
