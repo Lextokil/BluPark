@@ -114,6 +114,7 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
                         Veiculo veiculoDelete = dataVeiculo.getValue(Veiculo.class);
                         if (veiculoDelete.getPlaca().equalsIgnoreCase(placa.getText().toString())) {
                             dataVeiculo.getRef().removeValue();
+                            break;
                         } else {
                             UsuarioHelper.veiculos.add(veiculoDelete);
                         }

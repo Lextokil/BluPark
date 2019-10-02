@@ -73,8 +73,6 @@ public class AtivarTicketActivity extends AppCompatActivity {
         spinner.setAdapter(mAdapter);
 
         //Pegar a localização do usuario e armazenar
-
-        // Comentado para teste do getLocalizaoComLoading
          getLocalizacao();
 
 
@@ -94,7 +92,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
                                do {try {
                                    sleep(1000);
                                }catch (Exception e){
-
+                                   Log.e("",e.getMessage());
                                }
 
                                }while (UsuarioHelper.latitude == 0 && UsuarioHelper.longitute == 0);
@@ -184,7 +182,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
                 int total = dataSnapshot.getValue(int.class);
                 total -= 1;
-                if (total > 0) {
+                if (total >= 0) {
                     ticketsRef.setValue(total);
                     Toast.makeText(AtivarTicketActivity.this,
                             "Ticket ativado com sucesso!",
@@ -223,9 +221,9 @@ public class AtivarTicketActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.clear();
-        editor.putLong("millisLeft", 60000);
+        editor.putLong("millisLeft", 300000);
         editor.putBoolean("timerRunning", UsuarioHelper.isTicketAtivo);
-        endtime = System.currentTimeMillis() + 60000;
+        endtime = System.currentTimeMillis() + 300000;
         Log.i("endtime", "Endtime : "+ endtime);
         editor.putLong("endTime", (endtime));
         editor.putInt("index", index);
@@ -294,27 +292,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
     }
 
-    public void getLocalizacaoComLoading() {
 
-
-        Thread thr1 = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    getLocalizacao();
-                    UsuarioHelper.toLoadingTicketToDashboard(AtivarTicketActivity.this);
-
-                    while(UsuarioHelper.getLongitute() == 0 && UsuarioHelper.getLatitude() == 0) {
-                        getLocalizacao();
-                        UsuarioHelper.toLoadingTicketToDashboard(AtivarTicketActivity.this);
-                    }
-                }catch (Exception ex) {
-                    System.out.println(ex);
-                }
-            }
-        };
-
-    }
 }
 
 

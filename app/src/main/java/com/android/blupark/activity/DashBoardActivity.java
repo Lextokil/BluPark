@@ -31,13 +31,13 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class DashBoardActivity extends AppCompatActivity {
-    private LinearLayout layoutCarros;
+
 
     private DatabaseReference veiculosRef = FirebaseDatabase.getInstance().getReference("veiculos");
     private DatabaseReference usuarioRef = FirebaseDatabase.getInstance().getReference("usuarios");
     private ValueEventListener valueEventListenerVeiculos;
 
-    private static final long START_TIME_IN_MILLIS = 60000;
+    private static final long START_TIME_IN_MILLIS = 300000;
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning;
     private long mTimeLeftMillis = START_TIME_IN_MILLIS;
@@ -123,7 +123,7 @@ public class DashBoardActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        GetVeiculos();
+
 
         GetTickets();
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
@@ -172,32 +172,7 @@ public class DashBoardActivity extends AppCompatActivity {
 
     }
 
-    //Pega os veiculos que o usuario tem cadastrado
-    public void GetVeiculos() {
-        String usuarioId;
-        usuarioId = UsuarioHelper.getIDUsuarioAtual();
 
-
-        veiculosRef.child(usuarioId).addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                UsuarioHelper.veiculos.clear();
-                for (DataSnapshot dados : dataSnapshot.getChildren()) {
-                    Log.i("dados", "Retorno " + dados.toString());
-                    Veiculo veiculo = dados.getValue(Veiculo.class);
-                    UsuarioHelper.veiculos.add(veiculo);
-                }
-                updateTicketComponents();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }
 
     //Atualiza a quantidade de tickets disponíveis do usuario
     public void GetTickets() {

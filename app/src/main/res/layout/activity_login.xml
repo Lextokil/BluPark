@@ -25,7 +25,6 @@
         android:background="#0F67B6"
         android:bottomLeftRadius="8dp"
         android:bottomRightRadius="8dp"
-        android:onClick="validarLoginUsuario"
         android:text="Entrar"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
