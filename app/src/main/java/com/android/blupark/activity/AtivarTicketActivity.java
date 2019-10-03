@@ -116,9 +116,9 @@ public class AtivarTicketActivity extends AppCompatActivity {
                 Veiculo veiculo = UsuarioHelper.veiculos.get(index1);
                 
                 final AlertDialog.Builder builder = new AlertDialog.Builder(AtivarTicketActivity.this);
-                builder.setTitle("Ativação Ticket");
-                builder.setMessage("Deseja Ativar o ticket?");
-                builder.setMessage((veiculo.getTipo()) + ": " +
+                builder.setTitle("Deseja Ativar o ticket?");
+                builder.setMessage(
+                                    veiculo.getTipo() + ": " +
                                     veiculo.getModelo() + "\nPlaca: " +
                                     veiculo.getPlaca());
 

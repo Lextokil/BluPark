@@ -44,8 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         campoEmail = findViewById(R.id.editLoginEmail);
         campoSenha = findViewById(R.id.editLoginSenha);
 
-<<<<<<< HEAD
-=======
+
         btnEntrar = findViewById(R.id.btnEntrar);
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
                 // IMPEDE O USUARIO DE CLICAR VARIAS VEZES NO BOTÃO
                 btnEntrar.setEnabled(false);
                 validarLoginUsuario();
-
 
             }
         });
@@ -67,7 +65,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
 
 
->>>>>>> aba596ad12efb07d679446ed531ae09c36a1c877
     }
 
 
