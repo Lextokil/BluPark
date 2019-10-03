@@ -43,7 +43,6 @@ public class DashBoardActivity extends AppCompatActivity {
     private long mTimeLeftMillis = START_TIME_IN_MILLIS;
     private long mEndTime;
 
-
     private TextView qtdTickets, textPlaca, textModelo, textTimer;
     private LinearLayout ticketsLayout;
     private Button btnFinalizar, btnAtivarTicket, btnMaps;
@@ -77,7 +76,6 @@ public class DashBoardActivity extends AppCompatActivity {
             }
         });
 
-
         btnFinalizar = findViewById(R.id.btnFinalizar);
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
 
@@ -86,6 +84,7 @@ public class DashBoardActivity extends AppCompatActivity {
                 AlertDialog.Builder alertbox = new AlertDialog.Builder(view1.getRootView().getContext());
                 alertbox.setTitle("Finalizar Ticket");
                 alertbox.setMessage("Deseja finalizar o ticket?");
+
                 alertbox.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -93,8 +92,6 @@ public class DashBoardActivity extends AppCompatActivity {
 
                         ticketsLayout.setVisibility(View.INVISIBLE);
                         isTicketActive();
-
-
 
                     }
                 });
@@ -109,11 +106,9 @@ public class DashBoardActivity extends AppCompatActivity {
                 alerta = alertbox.create();
                 alerta = alertbox.show();
 
-
                 //METODO PARA EXCLUIR O TICKET DA DATABASE
                /* String ticketDeletado = UsuarioHelper.veiculo.getModelo() + " - " + UsuarioHelper.veiculo.getPlaca();
                 UsuarioHelper.deletTicket(ticketDeletado);*/
-
 
             }
 
@@ -166,9 +161,7 @@ public class DashBoardActivity extends AppCompatActivity {
         editor.putBoolean("timerRunning", mTimerRunning);
         editor.putLong("endTime", mEndTime);
         editor.putInt("index", indexVeiculo);
-
         editor.apply();
-
 
     }
 
@@ -250,13 +243,11 @@ public class DashBoardActivity extends AppCompatActivity {
 
     }
 
-
     private void resetTimer() {
         mTimerRunning = false;
         mTimeLeftMillis = START_TIME_IN_MILLIS;
         UsuarioHelper.isTicketAtivo = mTimerRunning;
         updateTempoTicket();
-
 
     }
 
@@ -282,7 +273,6 @@ public class DashBoardActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }*/
-
 
         }
     }

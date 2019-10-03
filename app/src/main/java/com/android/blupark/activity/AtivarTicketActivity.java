@@ -16,7 +16,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,6 +33,7 @@ import com.android.blupark.helper.Permissoes;
 import com.android.blupark.helper.UsuarioHelper;
 import com.android.blupark.helper.VeiculoHelper;
 import com.android.blupark.model.Ticket;
+import com.android.blupark.model.Usuario;
 import com.android.blupark.model.Veiculo;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -53,6 +57,11 @@ public class AtivarTicketActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private LocationListener locationListener;
     private LatLng meulocal;
+    private TextView qtdTickets, textPlaca, textModelo, textTimer;
+    private LinearLayout ticketsLayout;
+    private Button btnFinalizar, btnMaps;
+    private ImageView iconVeiculo;
+    private int indexVeiculo;
 
     private String[] permissoes = new String[]{
             Manifest.permission.ACCESS_FINE_LOCATION
@@ -61,6 +70,29 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_dash_board);
+        qtdTickets = findViewById(R.id.textTicketsDisponiveis);
+        textPlaca = findViewById(R.id.textPlaca);
+        textModelo = findViewById(R.id.textModelo);
+        textTimer = findViewById(R.id.textTimer);
+        ticketsLayout = findViewById(R.id.ticketLayout);
+        iconVeiculo = findViewById(R.id.iconveiculo);
+
+        btnAtivarTicket = findViewById(R.id.btnAtivarTicket);
+        btnAtivarTicket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UsuarioHelper.toAtivarTicketsActivity(AtivarTicketActivity.this);
+            }
+        });
+
+        btnMaps = findViewById(R.id.btnMaps);
+        btnMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UsuarioHelper.toMapsActivity(AtivarTicketActivity.this);
+            }
+        });
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ativar_ticket);
         spinner = findViewById(R.id.spinnerVeiculos);
@@ -82,9 +114,16 @@ public class AtivarTicketActivity extends AppCompatActivity {
         btnAtivarTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int index1 = spinner.getSelectedItemPosition();
+                Veiculo veiculo = UsuarioHelper.veiculos.get(index1);
+                
                 final AlertDialog.Builder builder = new AlertDialog.Builder(AtivarTicketActivity.this);
-                builder.setTitle("Cofirmação de ticket");
+                builder.setTitle("Ativação Ticket");
                 builder.setMessage("Deseja Ativar o ticket?");
+                builder.setMessage((veiculo.getTipo()) + ": " +
+                                    veiculo.getModelo() + "\nPlaca: " +
+                                    veiculo.getPlaca());
+
                 builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -94,19 +133,15 @@ public class AtivarTicketActivity extends AppCompatActivity {
                                do {try {
                                    sleep(1000);
                                }catch (Exception e){
-
                                }
-
                                }while (UsuarioHelper.latitude == 0 && UsuarioHelper.longitute == 0);
 
                                     decreaseTicketByOne();
-
                             }
 
                         };
                         myThread.start();
                         UsuarioHelper.toLoadingTicketToDashboard(AtivarTicketActivity.this);
-
 
                     }
                 });

@@ -33,7 +33,6 @@ public class LoginActivity extends AppCompatActivity {
         campoEmail = findViewById(R.id.editLoginEmail);
         campoSenha = findViewById(R.id.editLoginSenha);
 
-
     }
 
     public void validarLoginUsuario(View view){
