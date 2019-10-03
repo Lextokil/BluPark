@@ -47,8 +47,8 @@ public class CompraTicketsActivity extends AppCompatActivity {
     public void confirmarCompra(View view) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Confirmar Compra");
-        builder.setMessage("Deseja confirmar o pedido?");
+        builder.setTitle("Deseja confirmar o pedido?");
+        builder.setMessage(ticketsTemp + " Tickets");
         builder.setPositiveButton("Comprar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface arg0, int arg1) {
                 Toast.makeText(CompraTicketsActivity.this,
