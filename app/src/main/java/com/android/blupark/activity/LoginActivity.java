@@ -34,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnEntrar;
     private DatabaseReference veiculosRef = FirebaseDatabase.getInstance().getReference("veiculos");
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,17 +56,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-
-
     }
-
 
     public void validarLoginUsuario() {
         //Recuperar os textos dos campos
@@ -92,7 +87,6 @@ public class LoginActivity extends AppCompatActivity {
             btnEntrar.setEnabled(true);
 
         }
-
 
     }
 
@@ -146,6 +140,5 @@ public class LoginActivity extends AppCompatActivity {
                 });
 
     }
-
 
 }

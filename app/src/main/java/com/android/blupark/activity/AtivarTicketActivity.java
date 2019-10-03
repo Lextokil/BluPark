@@ -48,7 +48,6 @@ import java.util.ArrayList;
 
 public class AtivarTicketActivity extends AppCompatActivity {
 
-
     private Button btnAtivarTicket;
     private Spinner spinner;
     private ArrayList<VeiculoRow> mVeiculosList;
@@ -66,7 +65,6 @@ public class AtivarTicketActivity extends AppCompatActivity {
     private String[] permissoes = new String[]{
             Manifest.permission.ACCESS_FINE_LOCATION
     };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +104,6 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
         //Pegar a localização do usuario e armazenar
          getLocalizacao();
-
 
         btnAtivarTicket = findViewById(R.id.btnAtivarTicket);
         btnAtivarTicket.setOnClickListener(new View.OnClickListener() {
@@ -195,7 +192,6 @@ public class AtivarTicketActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -211,7 +207,6 @@ public class AtivarTicketActivity extends AppCompatActivity {
     public void decreaseTicketByOne() {
         final DatabaseReference ticketsRef = FirebaseDatabase.getInstance().getReference("usuarios")
                 .child(UsuarioHelper.getIDUsuarioAtual()).child("qtdTickets");
-
 
         ticketsRef.addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -234,7 +229,6 @@ public class AtivarTicketActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                 }
 
-
             }
 
             @Override
@@ -243,12 +237,9 @@ public class AtivarTicketActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     public void activateTicket() {
-
-
 
         UsuarioHelper.isTicketAtivo = true;
         int index = spinner.getSelectedItemPosition();
@@ -273,8 +264,6 @@ public class AtivarTicketActivity extends AppCompatActivity {
         UsuarioHelper.longitute = 0;
         UsuarioHelper.toDashBoardActivity(AtivarTicketActivity.this);
 
-
-
     }
 
     public void postTicket(String veiculo, Long endtime) {
@@ -288,19 +277,15 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
     public void getLocalizacao() {
 
-
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
-
 
             @Override
             public void onLocationChanged(Location location) {
                 UsuarioHelper.latitude = location.getLatitude();
                 UsuarioHelper.longitute = location.getLongitude();
                 meulocal = new LatLng(UsuarioHelper.latitude, UsuarioHelper.longitute);
-
             }
-
 
             @Override
             public void onStatusChanged(String s, int i, Bundle bundle) {
@@ -327,12 +312,6 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
         }
 
-
     }
 
-
 }
-
-
-
-

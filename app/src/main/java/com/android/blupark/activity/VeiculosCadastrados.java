@@ -11,8 +11,6 @@ import com.android.blupark.helper.UsuarioHelper;
 
 public class VeiculosCadastrados extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,8 +21,6 @@ public class VeiculosCadastrados extends AppCompatActivity {
 
         //Config Adapter
         AdapterVeiculos adapter = new AdapterVeiculos(UsuarioHelper.veiculos );
-
-
 
         //Config RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());

@@ -32,7 +32,6 @@ import java.util.Locale;
 
 public class DashBoardActivity extends AppCompatActivity {
 
-
     private DatabaseReference veiculosRef = FirebaseDatabase.getInstance().getReference("veiculos");
     private DatabaseReference usuarioRef = FirebaseDatabase.getInstance().getReference("usuarios");
     private ValueEventListener valueEventListenerVeiculos;
@@ -119,7 +118,6 @@ public class DashBoardActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-
         GetTickets();
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         mTimeLeftMillis = prefs.getLong("millisLeft", START_TIME_IN_MILLIS);
@@ -164,8 +162,6 @@ public class DashBoardActivity extends AppCompatActivity {
         editor.apply();
 
     }
-
-
 
     //Atualiza a quantidade de tickets disponíveis do usuario
     public void GetTickets() {

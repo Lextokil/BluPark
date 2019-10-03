@@ -39,7 +39,6 @@ public class LoadingTicketToDashboard extends AppCompatActivity {
             }
         };
 
-
         loadingThread.start();
 
     }

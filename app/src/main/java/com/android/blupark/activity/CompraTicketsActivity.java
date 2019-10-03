@@ -19,7 +19,6 @@ public class CompraTicketsActivity extends AppCompatActivity {
     private int ticketsTemp;
     private AlertDialog alerta;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +30,6 @@ public class CompraTicketsActivity extends AppCompatActivity {
         tickets = findViewById(R.id.textTickets);
 
     }
-
     public void addTicket(View view) {
         if (view.equals(btn10)) {
             ticketsTemp += 10;
@@ -41,7 +39,6 @@ public class CompraTicketsActivity extends AppCompatActivity {
             ticketsTemp += 100;
         }
         tickets.setText("Quantidade de tickets: " + ticketsTemp);
-
     }
 
     public void confirmarCompra(View view) {
@@ -68,9 +65,6 @@ public class CompraTicketsActivity extends AppCompatActivity {
         alerta = builder.create();
         alerta.show();
 
-
     }
 
 }
-
-

@@ -16,13 +16,10 @@ public class LoadingLoginToDashboard extends AppCompatActivity {
     static AnimationDrawable animation;
     private boolean active = false;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading_login_to_dashboard);
-
 
         active = true;
         Thread loadingThread = new Thread() {
@@ -43,11 +40,8 @@ public class LoadingLoginToDashboard extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-
-
             }
         };
-
 
         loadingThread.start();
 
