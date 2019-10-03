@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyViewHolder>{
+
+    private int icon;
+
     private DatabaseReference veiculosRef = FirebaseDatabase.getInstance().getReference("veiculos").
             child(UsuarioHelper.getIDUsuarioAtual());
 
@@ -58,6 +62,7 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
         holder.tipo.setText(veiculos.getTipo());
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -114,6 +119,7 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
                         Veiculo veiculoDelete = dataVeiculo.getValue(Veiculo.class);
                         if (veiculoDelete.getPlaca().equalsIgnoreCase(placa.getText().toString())) {
                             dataVeiculo.getRef().removeValue();
+                            break;
                         } else {
                             UsuarioHelper.veiculos.add(veiculoDelete);
                         }

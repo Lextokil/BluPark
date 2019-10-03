@@ -86,12 +86,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     );
 
                     //VERIFICA SE O TICKET DA DATABASE JA NÃO PASSOU DO TEMPO SE JA PASSOU DELETA
-                    /*if(!(ticket.getEndTicketTime() - System.currentTimeMillis() < 0)){
+                   /* if(!(ticket.getEndTicketTime() - System.currentTimeMillis() < 0)){
                         LatLng point = new LatLng(ticket.getLatitude(),ticket.getLongitute());
                         mMap.addMarker(
                                 new MarkerOptions().
                                         position(point).
-                                        title(ticket.getVeiculo())//.icon(BitmapDescriptorFactory.fromResource(R.drawable.bluparklogo))
+                                        title(ticket.getVeiculo()).icon(BitmapDescriptorFactory.fromResource(R.drawable.blupark_pin))
                         ); mMap.moveCamera(
                                 CameraUpdateFactory.newLatLngZoom(point, 30)
                         );

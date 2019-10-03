@@ -3,18 +3,20 @@ package com.android.blupark.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.blupark.R;
-import com.android.blupark.helper.UsuarioHelper;
-import com.google.android.gms.maps.model.Dash;
-import com.android.blupark.activity.AtivarTicketActivity;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+
+
 public class LoadingLoginToDashboard extends AppCompatActivity {
 
     static AnimationDrawable animation;
+    private boolean active = false;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,37 +24,45 @@ public class LoadingLoginToDashboard extends AppCompatActivity {
         setContentView(R.layout.activity_loading_login_to_dashboard);
 
 
-        //Loading Screen
-        Thread myThread = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    Intent intent = new Intent(getApplicationContext(), DashBoardActivity.class);
-                    sleep(5000);
-                    startActivity(intent);
-                    finish();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
+        active = true;
         Thread loadingThread = new Thread() {
             @Override
             public void run() {
                 ImageView loading = (ImageView)findViewById(R.id.blupark_loading_png);
                 animation = (AnimationDrawable)loading.getDrawable();
                 animation.start();
+                try {
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    sleep(12000);
+                    if(active){
+                        startActivity(intent);
+                        finish();
+                    }
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+
+
             }
         };
 
 
-        myThread.start();
         loadingThread.start();
 
-        //Loading animation
-
-
-        //UsuarioHelper.toDashBoardActivity(LoadingLoginToDashboard.this);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        active = true;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        active = false;
+    }
+
 }
