@@ -36,22 +36,3 @@ public class VeiculosCadastrados extends AppCompatActivity {
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

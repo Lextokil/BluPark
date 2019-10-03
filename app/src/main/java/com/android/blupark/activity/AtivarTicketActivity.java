@@ -118,10 +118,10 @@ public class AtivarTicketActivity extends AppCompatActivity {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(AtivarTicketActivity.this);
                 builder.setTitle("Deseja Ativar o ticket?");
                 builder.setMessage(
-                                    veiculo.getTipo() + ": " +
-                                    veiculo.getModelo() + "\nPlaca: " +
-                                    veiculo.getPlaca());
-
+                                  "\nPlaca: " +
+                                    veiculo.getPlaca()  + "\n" +
+                                    veiculo.getTipo()   + ": " +
+                                    veiculo.getModelo() + "\n") ;
                 builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
