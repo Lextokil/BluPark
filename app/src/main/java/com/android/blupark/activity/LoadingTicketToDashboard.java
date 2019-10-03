@@ -28,7 +28,7 @@ public class LoadingTicketToDashboard extends AppCompatActivity {
                 animation.start();
                 try {
                     Intent intent = new Intent(getApplicationContext(), DashBoardActivity.class);
-                    sleep(15000);
+                    sleep(25000);
                     if(active){
                         startActivity(intent);
                         finish();

@@ -33,7 +33,7 @@ public class LoadingLoginToDashboard extends AppCompatActivity {
                 animation.start();
                 try {
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                    sleep(12000);
+                    sleep(20000);
                     if(active){
                         startActivity(intent);
                         finish();
