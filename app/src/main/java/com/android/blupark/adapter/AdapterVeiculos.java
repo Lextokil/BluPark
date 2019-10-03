@@ -3,6 +3,8 @@ package com.android.blupark.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import com.android.blupark.R;
 import com.android.blupark.activity.AtivarTicketActivity;
 import com.android.blupark.activity.DashBoardActivity;
 import com.android.blupark.helper.UsuarioHelper;
+import com.android.blupark.helper.VeiculoHelper;
 import com.android.blupark.model.Veiculo;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -27,18 +30,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import android.view.LayoutInflater;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyViewHolder>{
 
-    private int icon;
+    private AlertDialog alerta;
+    private ImageView icon_veiculo;
 
     private DatabaseReference veiculosRef = FirebaseDatabase.getInstance().getReference("veiculos").
             child(UsuarioHelper.getIDUsuarioAtual());
-
-    private AlertDialog alerta;
-
 
 
     public AdapterVeiculos(List<Veiculo> lista) {
@@ -60,8 +63,10 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
         holder.placa.setText(veiculos.getPlaca());
         holder.modelo.setText(veiculos.getModelo());
         holder.tipo.setText(veiculos.getTipo());
+        holder.icon_veiculo.setImageResource(VeiculoHelper.GetIconTipe(veiculos.getTipo()));
 
     }
+
 
 
     @Override
@@ -69,11 +74,16 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
         return UsuarioHelper.veiculos.size();
     }
 
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private Button btnExcluirVEiculo;
         TextView placa;
         TextView modelo;
         TextView tipo;
+        ImageView icon_veiculo;
+
+
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -81,6 +91,11 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
             placa = itemView.findViewById(R.id.textPlaca);
             modelo = itemView.findViewById(R.id.textModelo);
             tipo = itemView.findViewById(R.id.textTipo);
+            icon_veiculo = itemView.findViewById(R.id.icone_veiculo);
+
+            //icon_veiculo.setImageResource(VeiculoHelper.GetIconTipe(UsuarioHelper.veiculo.getTipo()));
+
+
             btnExcluirVEiculo = itemView.findViewById(R.id.btnExcluirVeiculo);
             btnExcluirVEiculo.setOnClickListener(new View.OnClickListener() {
                 @Override

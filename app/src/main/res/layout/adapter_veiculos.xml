@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/background_lista_veiculos"
     android:layout_width="match_parent"
@@ -19,13 +20,22 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="4dp"
-            android:layout_weight="2"
+            android:layout_weight="10"
             android:fontFamily="@font/roboto_condensed_bold"
             android:text="Placa"
             android:textAlignment="textStart"
             android:textColor="#AE000000"
-            android:textSize="14sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/icone_veiculo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="8dp"
+            android:layout_weight="20"
+            app:srcCompat="@drawable/iconcarro" />
 
         <TextView
             android:id="@+id/textTipo"
@@ -34,12 +44,12 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="6dp"
-            android:layout_weight="3"
+            android:layout_weight="18"
             android:fontFamily="@font/roboto_condensed_bold"
             android:text="Tipo"
-            android:textAlignment="viewEnd"
+            android:textAlignment="viewStart"
             android:textColor="#AE000000"
-            android:textSize="14sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
