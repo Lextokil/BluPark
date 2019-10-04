@@ -100,7 +100,7 @@
                     android:paddingLeft="4dp"
                     android:paddingTop="6dp"
                     android:paddingBottom="4dp"
-                    app:srcCompat="@drawable/iconcarro" />
+                    app:srcCompat="@drawable/car_icon_black" />
 
                 <TextView
                     android:id="@+id/textModelo"

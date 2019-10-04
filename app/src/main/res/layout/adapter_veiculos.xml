@@ -35,7 +35,7 @@
             android:layout_gravity="bottom"
             android:layout_marginTop="8dp"
             android:layout_weight="20"
-            app:srcCompat="@drawable/iconcarro" />
+            app:srcCompat="@drawable/car_icon_black" />
 
         <TextView
             android:id="@+id/textTipo"

@@ -20,14 +20,14 @@ public class VeiculoHelper {
     public static int GetIconTipe(String tipoVeiculo) {
         int iconReturn = 0;
         if (tipoVeiculo.equalsIgnoreCase("MOTO")) {
-            iconReturn = R.drawable.iconmoto;
+            iconReturn = R.drawable.moto_icon_black;
 
         } else if (tipoVeiculo.equalsIgnoreCase("CARRO")) {
-            iconReturn = R.drawable.iconcarro;
+            iconReturn = R.drawable.car_icon_black;
         } else if (tipoVeiculo.equalsIgnoreCase("ONIBUS")) {
-            iconReturn = R.drawable.iconbus;
+            iconReturn = R.drawable.bus_icon_black;
         } else {
-            iconReturn = R.drawable.iconcaminhao;
+            iconReturn = R.drawable.truck_icon_black;
         }
         return iconReturn;
     }
