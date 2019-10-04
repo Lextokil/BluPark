@@ -122,6 +122,8 @@ public class AtivarTicketActivity extends AppCompatActivity {
                 builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        //Pegar a localização do usuario e armazenar
+                        getLocalizacao();
                         Thread myThread = new Thread() {
                             @Override
                             public void run() {
@@ -133,6 +135,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
                                    Log.e("",e.getMessage());
 
                                }
+                                   Log.e("", "Loop");
                                }while (UsuarioHelper.latitude == 0 && UsuarioHelper.longitute == 0);
 
                                     decreaseTicketByOne();

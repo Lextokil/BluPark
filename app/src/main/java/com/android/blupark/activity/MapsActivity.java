@@ -80,7 +80,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     title(ticket.getVeiculo()).
                                     icon(BitmapDescriptorFactory.fromResource(R.drawable.blupark_pin))
                     ); mMap.moveCamera(
-                            CameraUpdateFactory.newLatLngZoom(point, 30)
+                            CameraUpdateFactory.newLatLngZoom(point, 20)
                     );
 
                     //VERIFICA SE O TICKET DA DATABASE JA NÃO PASSOU DO TEMPO SE JA PASSOU DELETA
