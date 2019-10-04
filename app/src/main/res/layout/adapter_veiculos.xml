@@ -20,7 +20,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="4dp"
-            android:layout_weight="10"
+            android:layout_weight="14"
             android:fontFamily="@font/roboto_condensed_bold"
             android:text="Placa"
             android:textAlignment="textStart"
@@ -44,10 +44,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="6dp"
-            android:layout_weight="18"
+            android:layout_weight="14"
             android:fontFamily="@font/roboto_condensed_bold"
             android:text="Tipo"
-            android:textAlignment="viewStart"
+            android:textAlignment="viewEnd"
             android:textColor="#AE000000"
             android:textSize="18sp" />
 
