@@ -117,7 +117,7 @@ public class DashBoardActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        VeiculoHelper.GetVeiculos();
         GetTickets();
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         mTimeLeftMillis = prefs.getLong("millisLeft", START_TIME_IN_MILLIS);

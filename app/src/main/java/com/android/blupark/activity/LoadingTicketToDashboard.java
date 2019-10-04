@@ -26,16 +26,6 @@ public class LoadingTicketToDashboard extends AppCompatActivity {
                 ImageView loading = (ImageView)findViewById(R.id.blupark_loading_png);
                 animation = (AnimationDrawable)loading.getDrawable();
                 animation.start();
-                try {
-                    Intent intent = new Intent(getApplicationContext(), DashBoardActivity.class);
-                    sleep(25000);
-                    if(active){
-                        startActivity(intent);
-                        finish();
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
             }
         };
 

@@ -103,7 +103,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
         spinner.setAdapter(mAdapter);
 
         //Pegar a localização do usuario e armazenar
-         getLocalizacao();
+         //getLocalizacao();
 
         btnAtivarTicket = findViewById(R.id.btnAtivarTicket);
         btnAtivarTicket.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +125,8 @@ public class AtivarTicketActivity extends AppCompatActivity {
                         Thread myThread = new Thread() {
                             @Override
                             public void run() {
-                               do {try {
+                               do {
+                                   try {
                                    sleep(1000);
                                }catch (Exception e){
 
@@ -163,6 +164,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
             if (permissaoResultado == PackageManager.PERMISSION_DENIED) {
                 alertaValidacaoPermissao();
             }
+            getLocalizacao();
         }
     }
 
