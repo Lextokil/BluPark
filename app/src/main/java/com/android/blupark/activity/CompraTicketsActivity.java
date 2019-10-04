@@ -19,7 +19,6 @@ public class CompraTicketsActivity extends AppCompatActivity {
     private int ticketsTemp;
     private AlertDialog alerta;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +30,6 @@ public class CompraTicketsActivity extends AppCompatActivity {
         tickets = findViewById(R.id.textTickets);
 
     }
-
     public void addTicket(View view) {
         if (view.equals(btn10)) {
             ticketsTemp += 10;
@@ -41,14 +39,13 @@ public class CompraTicketsActivity extends AppCompatActivity {
             ticketsTemp += 100;
         }
         tickets.setText("Quantidade de tickets: " + ticketsTemp);
-
     }
 
     public void confirmarCompra(View view) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Confirmar Compra");
-        builder.setMessage("Deseja confirmar o pedido?");
+        builder.setTitle("Deseja confirmar o pedido?");
+        builder.setMessage(ticketsTemp + " Tickets");
         builder.setPositiveButton("Comprar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface arg0, int arg1) {
                 Toast.makeText(CompraTicketsActivity.this,
@@ -68,9 +65,6 @@ public class CompraTicketsActivity extends AppCompatActivity {
         alerta = builder.create();
         alerta.show();
 
-
     }
 
 }
-
-

@@ -1,5 +1,7 @@
 package com.android.blupark.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,25 +31,23 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class DashBoardActivity extends AppCompatActivity {
-    private LinearLayout layoutCarros;
 
     private DatabaseReference veiculosRef = FirebaseDatabase.getInstance().getReference("veiculos");
     private DatabaseReference usuarioRef = FirebaseDatabase.getInstance().getReference("usuarios");
     private ValueEventListener valueEventListenerVeiculos;
 
-    private static final long START_TIME_IN_MILLIS = 60000;
+    private static final long START_TIME_IN_MILLIS = 300000;
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning;
     private long mTimeLeftMillis = START_TIME_IN_MILLIS;
     private long mEndTime;
-
 
     private TextView qtdTickets, textPlaca, textModelo, textTimer;
     private LinearLayout ticketsLayout;
     private Button btnFinalizar, btnAtivarTicket, btnMaps;
     private ImageView iconVeiculo;
     private int indexVeiculo;
-
+    private AlertDialog alerta;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,31 +75,49 @@ public class DashBoardActivity extends AppCompatActivity {
             }
         });
 
-
         btnFinalizar = findViewById(R.id.btnFinalizar);
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view1) {
+                AlertDialog.Builder alertbox = new AlertDialog.Builder(view1.getRootView().getContext());
+                alertbox.setTitle("Finalizar Ticket");
+                alertbox.setMessage("Deseja finalizar o ticket?");
+
+                alertbox.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(view1.getRootView().getContext(), "Ticket Finalizado!", Toast.LENGTH_SHORT).show();
+
+                        ticketsLayout.setVisibility(View.INVISIBLE);
+                        isTicketActive();
+
+                    }
+                });
+                alertbox.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(view1.getRootView().getContext(), "Finalização cancelada!", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 resetTimer();
 
-                isTicketActive();
+                alerta = alertbox.create();
+                alerta = alertbox.show();
+
                 //METODO PARA EXCLUIR O TICKET DA DATABASE
                /* String ticketDeletado = UsuarioHelper.veiculo.getModelo() + " - " + UsuarioHelper.veiculo.getPlaca();
                 UsuarioHelper.deletTicket(ticketDeletado);*/
+
             }
+
         });
-
-        ticketsLayout.setVisibility(View.INVISIBLE);
-        isTicketActive();
-
     }
-
 
     @Override
     protected void onStart() {
         super.onStart();
-        GetVeiculos();
-
+        VeiculoHelper.GetVeiculos();
         GetTickets();
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         mTimeLeftMillis = prefs.getLong("millisLeft", START_TIME_IN_MILLIS);
@@ -140,36 +159,7 @@ public class DashBoardActivity extends AppCompatActivity {
         editor.putBoolean("timerRunning", mTimerRunning);
         editor.putLong("endTime", mEndTime);
         editor.putInt("index", indexVeiculo);
-
         editor.apply();
-
-
-    }
-
-    //Pega os veiculos que o usuario tem cadastrado
-    public void GetVeiculos() {
-        String usuarioId;
-        usuarioId = UsuarioHelper.getIDUsuarioAtual();
-
-
-        veiculosRef.child(usuarioId).addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                UsuarioHelper.veiculos.clear();
-                for (DataSnapshot dados : dataSnapshot.getChildren()) {
-                    Log.i("dados", "Retorno " + dados.toString());
-                    Veiculo veiculo = dados.getValue(Veiculo.class);
-                    UsuarioHelper.veiculos.add(veiculo);
-                }
-                updateTicketComponents();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
     }
 
@@ -224,13 +214,11 @@ public class DashBoardActivity extends AppCompatActivity {
 
     }
 
-
     private void resetTimer() {
         mTimerRunning = false;
         mTimeLeftMillis = START_TIME_IN_MILLIS;
         UsuarioHelper.isTicketAtivo = mTimerRunning;
         updateTempoTicket();
-
 
     }
 
@@ -256,7 +244,6 @@ public class DashBoardActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }*/
-
 
         }
     }

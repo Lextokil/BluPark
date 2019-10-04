@@ -16,7 +16,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,6 +33,7 @@ import com.android.blupark.helper.Permissoes;
 import com.android.blupark.helper.UsuarioHelper;
 import com.android.blupark.helper.VeiculoHelper;
 import com.android.blupark.model.Ticket;
+import com.android.blupark.model.Usuario;
 import com.android.blupark.model.Veiculo;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -44,7 +48,6 @@ import java.util.ArrayList;
 
 public class AtivarTicketActivity extends AppCompatActivity {
 
-
     private Button btnAtivarTicket;
     private Spinner spinner;
     private ArrayList<VeiculoRow> mVeiculosList;
@@ -53,14 +56,41 @@ public class AtivarTicketActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private LocationListener locationListener;
     private LatLng meulocal;
+    private TextView qtdTickets, textPlaca, textModelo, textTimer;
+    private LinearLayout ticketsLayout;
+    private Button btnFinalizar, btnMaps;
+    private ImageView iconVeiculo;
+    private int indexVeiculo;
 
     private String[] permissoes = new String[]{
             Manifest.permission.ACCESS_FINE_LOCATION
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_dash_board);
+        qtdTickets = findViewById(R.id.textTicketsDisponiveis);
+        textPlaca = findViewById(R.id.textPlaca);
+        textModelo = findViewById(R.id.textModelo);
+        textTimer = findViewById(R.id.textTimer);
+        ticketsLayout = findViewById(R.id.ticketLayout);
+        iconVeiculo = findViewById(R.id.iconveiculo);
+
+        btnAtivarTicket = findViewById(R.id.btnAtivarTicket);
+        btnAtivarTicket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UsuarioHelper.toAtivarTicketsActivity(AtivarTicketActivity.this);
+            }
+        });
+
+        btnMaps = findViewById(R.id.btnMaps);
+        btnMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UsuarioHelper.toMapsActivity(AtivarTicketActivity.this);
+            }
+        });
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ativar_ticket);
         spinner = findViewById(R.id.spinnerVeiculos);
@@ -73,23 +103,45 @@ public class AtivarTicketActivity extends AppCompatActivity {
         spinner.setAdapter(mAdapter);
 
         //Pegar a localização do usuario e armazenar
-
-        // Comentado para teste do getLocalizaoComLoading
-        // getLocalizacao();
-
+         //getLocalizacao();
 
         btnAtivarTicket = findViewById(R.id.btnAtivarTicket);
         btnAtivarTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int index1 = spinner.getSelectedItemPosition();
+                Veiculo veiculo = UsuarioHelper.veiculos.get(index1);
+                
                 final AlertDialog.Builder builder = new AlertDialog.Builder(AtivarTicketActivity.this);
-                builder.setTitle("Cofirmação de ticket");
-                builder.setMessage("Deseja Ativar o ticket?");
+                builder.setTitle("Deseja Ativar o ticket?");
+                builder.setMessage(
+                                  "\nPlaca: " +
+                                    veiculo.getPlaca()  + "\n" +
+                                    veiculo.getTipo()   + ": " +
+                                    veiculo.getModelo() + "\n") ;
                 builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        Thread myThread = new Thread() {
+                            @Override
+                            public void run() {
+                               do {
+                                   try {
+                                   sleep(1000);
+                               }catch (Exception e){
 
-                        decreaseTicketByOne();
+                                   Log.e("",e.getMessage());
+
+                               }
+                               }while (UsuarioHelper.latitude == 0 && UsuarioHelper.longitute == 0);
+
+                                    decreaseTicketByOne();
+                            }
+
+                        };
+                        myThread.start();
+                        UsuarioHelper.toLoadingTicketToDashboard(AtivarTicketActivity.this);
+
                     }
                 });
                 builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -112,6 +164,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
             if (permissaoResultado == PackageManager.PERMISSION_DENIED) {
                 alertaValidacaoPermissao();
             }
+            getLocalizacao();
         }
     }
 
@@ -141,7 +194,6 @@ public class AtivarTicketActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -157,7 +209,6 @@ public class AtivarTicketActivity extends AppCompatActivity {
     public void decreaseTicketByOne() {
         final DatabaseReference ticketsRef = FirebaseDatabase.getInstance().getReference("usuarios")
                 .child(UsuarioHelper.getIDUsuarioAtual()).child("qtdTickets");
-        boolean condition = false;
 
         ticketsRef.addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -166,7 +217,7 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
                 int total = dataSnapshot.getValue(int.class);
                 total -= 1;
-                if (total > 0) {
+                if (total >= 0) {
                     ticketsRef.setValue(total);
                     Toast.makeText(AtivarTicketActivity.this,
                             "Ticket ativado com sucesso!",
@@ -180,7 +231,6 @@ public class AtivarTicketActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                 }
 
-
             }
 
             @Override
@@ -189,12 +239,9 @@ public class AtivarTicketActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     public void activateTicket() {
-
-        getLocalizacaoComLoading();
 
         UsuarioHelper.isTicketAtivo = true;
         int index = spinner.getSelectedItemPosition();
@@ -205,9 +252,9 @@ public class AtivarTicketActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.clear();
-        editor.putLong("millisLeft", 60000);
+        editor.putLong("millisLeft", 300000);
         editor.putBoolean("timerRunning", UsuarioHelper.isTicketAtivo);
-        endtime = System.currentTimeMillis() + 60000;
+        endtime = System.currentTimeMillis() + 300000;
         Log.i("endtime", "Endtime : "+ endtime);
         editor.putLong("endTime", (endtime));
         editor.putInt("index", index);
@@ -215,9 +262,9 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
         //Salvar os dados no banco
         postTicket((UsuarioHelper.veiculo.getModelo() + " - " + UsuarioHelper.veiculo.getPlaca()), endtime);
+        UsuarioHelper.latitude = 0;
+        UsuarioHelper.longitute = 0;
         UsuarioHelper.toDashBoardActivity(AtivarTicketActivity.this);
-
-
 
     }
 
@@ -232,19 +279,15 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
     public void getLocalizacao() {
 
-        UsuarioHelper.toAtivarTicketsActivity(AtivarTicketActivity.this);
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         locationListener = new LocationListener() {
-
 
             @Override
             public void onLocationChanged(Location location) {
                 UsuarioHelper.latitude = location.getLatitude();
                 UsuarioHelper.longitute = location.getLongitude();
                 meulocal = new LatLng(UsuarioHelper.latitude, UsuarioHelper.longitute);
-
             }
-
 
             @Override
             public void onStatusChanged(String s, int i, Bundle bundle) {
@@ -273,29 +316,4 @@ public class AtivarTicketActivity extends AppCompatActivity {
 
     }
 
-    public void getLocalizacaoComLoading() {
-
-
-        Thread thr1 = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    getLocalizacao();
-                    UsuarioHelper.toLoadingTicketToDashboard(AtivarTicketActivity.this);
-
-                    while(UsuarioHelper.getLongitute() == 0 && UsuarioHelper.getLatitude() == 0) {
-                        getLocalizacao();
-                        UsuarioHelper.toLoadingTicketToDashboard(AtivarTicketActivity.this);
-                    }
-                }catch (Exception ex) {
-                    System.out.println(ex);
-                }
-            }
-        };
-
-    }
 }
-
-
-
-

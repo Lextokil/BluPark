@@ -12,26 +12,14 @@ import com.android.blupark.R;
 public class LoadingTicketToDashboard extends AppCompatActivity {
 
     static AnimationDrawable animation;
+    private boolean active = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading_ticket_to_dashboard);
 
-        //Loading Screen
-        Thread myThread = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    sleep(10000);
-                    Intent intent = new Intent(getApplicationContext(), DashBoardActivity.class);
-                    startActivity(intent);
-                    finish();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
+        active = true;
         Thread loadingThread = new Thread() {
             @Override
             public void run() {
@@ -41,8 +29,18 @@ public class LoadingTicketToDashboard extends AppCompatActivity {
             }
         };
 
-        myThread.start();
         loadingThread.start();
 
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        active = true;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        active = false;
     }
 }

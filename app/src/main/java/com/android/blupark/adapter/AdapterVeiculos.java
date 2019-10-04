@@ -1,17 +1,26 @@
 package com.android.blupark.adapter;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.blupark.R;
+import com.android.blupark.activity.AtivarTicketActivity;
 import com.android.blupark.activity.DashBoardActivity;
 import com.android.blupark.helper.UsuarioHelper;
+import com.android.blupark.helper.VeiculoHelper;
 import com.android.blupark.model.Veiculo;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -21,17 +30,23 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import android.view.LayoutInflater;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyViewHolder>{
+
+    private AlertDialog alerta;
+    private ImageView icon_veiculo;
+
     private DatabaseReference veiculosRef = FirebaseDatabase.getInstance().getReference("veiculos").
             child(UsuarioHelper.getIDUsuarioAtual());
 
 
-
     public AdapterVeiculos(List<Veiculo> lista) {
         UsuarioHelper.veiculos = (ArrayList<Veiculo>) lista;
+
     }
 
     @NonNull
@@ -48,19 +63,27 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
         holder.placa.setText(veiculos.getPlaca());
         holder.modelo.setText(veiculos.getModelo());
         holder.tipo.setText(veiculos.getTipo());
+        holder.icon_veiculo.setImageResource(VeiculoHelper.GetIconTipe(veiculos.getTipo()));
 
     }
+
+
 
     @Override
     public int getItemCount() {
         return UsuarioHelper.veiculos.size();
     }
 
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private Button btnExcluirVEiculo;
         TextView placa;
         TextView modelo;
         TextView tipo;
+        ImageView icon_veiculo;
+
+
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,11 +91,35 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
             placa = itemView.findViewById(R.id.textPlaca);
             modelo = itemView.findViewById(R.id.textModelo);
             tipo = itemView.findViewById(R.id.textTipo);
+            icon_veiculo = itemView.findViewById(R.id.icone_veiculo);
+
+            //icon_veiculo.setImageResource(VeiculoHelper.GetIconTipe(UsuarioHelper.veiculo.getTipo()));
+
+
             btnExcluirVEiculo = itemView.findViewById(R.id.btnExcluirVeiculo);
             btnExcluirVEiculo.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    excluirVeiculo();
+                public void onClick(final View view) {
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(view.getRootView().getContext());
+                    alertbox.setTitle("Exclusão de veículo");
+                    alertbox.setMessage("Deseja excluir o veículo?");
+                    alertbox.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Toast.makeText(view.getRootView().getContext(), "Veículo excluído!", Toast.LENGTH_SHORT).show();
+
+                            excluirVeiculo();
+                        }
+                    });
+                    alertbox.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Toast.makeText(view.getRootView().getContext(), "Exclusão Cancelada!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    alerta = alertbox.create();
+                    alerta = alertbox.show();
+
                 }
 
             });
@@ -82,13 +129,12 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.MyView
             veiculosRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    UsuarioHelper.veiculos.clear();
                     for (DataSnapshot dataVeiculo : dataSnapshot.getChildren()) {
-
                         Veiculo veiculoDelete = dataVeiculo.getValue(Veiculo.class);
-
-                        UsuarioHelper.veiculos.clear();
                         if (veiculoDelete.getPlaca().equalsIgnoreCase(placa.getText().toString())) {
                             dataVeiculo.getRef().removeValue();
+                            break;
                         } else {
                             UsuarioHelper.veiculos.add(veiculoDelete);
                         }

@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.blupark">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,8 +13,8 @@
         <activity android:name=".activity.LoadingLoginToDashboard" />
         <activity
             android:name=".activity.CadastroActivity"
-            android:label="@string/title_Cadastro"
-            android:parentActivityName=".activity.MainActivity" />
+            android:parentActivityName=".activity.MainActivity"
+            android:label="@string/title_Cadastro" />
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/title_Login"
@@ -38,7 +35,9 @@
             android:name=".activity.CadastroVeiculoActivity"
             android:label="Cadatrar um veículo"
             android:parentActivityName=".activity.DashBoardActivity" />
-        <activity android:name=".activity.DashBoardActivity" />
+        <activity
+            android:name=".activity.DashBoardActivity"
+            android:parentActivityName=".activity.LoginActivity" />
         <activity android:name=".activity.MapsActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -65,5 +64,8 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

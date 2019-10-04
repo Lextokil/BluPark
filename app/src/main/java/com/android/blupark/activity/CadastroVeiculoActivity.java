@@ -2,6 +2,7 @@ package com.android.blupark.activity;
 
 import com.android.blupark.R;
 import com.android.blupark.helper.UsuarioHelper;
+import com.android.blupark.helper.VeiculoHelper;
 import com.android.blupark.model.Veiculo;
 import com.google.android.material.textfield.TextInputEditText;
 import com.android.blupark.activity.VeiculosCadastrados;
@@ -32,7 +33,6 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_veiculo);
         Log.i("regex", "regex:  " + placaVeiculadoValida("miz2670"));
 
-
         tipo = "";
         campoModelo = findViewById(R.id.editModelo);
         campoPlaca = findViewById(R.id.editPlaca);
@@ -41,10 +41,7 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
         btnOnibus = findViewById(R.id.btnOnibus);
         btnCaminhao = findViewById(R.id.btnCaminhao);
 
-
     }
-
-
 
     public void salvarVeiculo(View view){
         String textPlaca = campoPlaca.getText().toString().toUpperCase();
@@ -65,10 +62,12 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
                             veiculo.setModelo(textModelo.toUpperCase());
                             veiculo.setTipo(tipo);
                             veiculo.salvarVeiculo();
+                            VeiculoHelper.GetVeiculos();
                             UsuarioHelper.toDashBoardActivity(CadastroVeiculoActivity.this);
                             Toast.makeText(CadastroVeiculoActivity.this,
                                     "Veículo cadastrado com sucesso!",
                                     Toast.LENGTH_LONG).show();
+
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -114,8 +113,9 @@ public class CadastroVeiculoActivity extends AppCompatActivity {
         return tipo;
     }
 
-
     public boolean placaVeiculadoValida(String placa) {
         return Pattern.compile("[a-zA-Z]{3}[0-9]{4}").matcher(placa).matches();
     }
+
+
 }

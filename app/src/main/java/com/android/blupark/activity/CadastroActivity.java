@@ -32,8 +32,6 @@ public class CadastroActivity extends AppCompatActivity {
         campoSenha = findViewById(R.id.editCadastroSenha);
         confirmarSenha = findViewById(R.id.editConfirmarSenha);
 
-
-
     }
 
     public void validarCadastroUsuario(View view){
@@ -129,8 +127,6 @@ public class CadastroActivity extends AppCompatActivity {
         });
 
     }
-
-
 
    /* PEGAR DATA DE NASCIMENTO COM CALENDARIO E CALCULAR IDADE
    public void pegarData(){

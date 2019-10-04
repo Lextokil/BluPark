@@ -25,7 +25,6 @@
         android:background="#0F67B6"
         android:bottomLeftRadius="8dp"
         android:bottomRightRadius="8dp"
-        android:onClick="validarLoginUsuario"
         android:text="Entrar"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
@@ -38,12 +37,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.758" />
 
+
+
+
     <com.google.android.material.textfield.TextInputEditText
+
+
+
         android:id="@+id/editLoginSenha"
         android:layout_width="332dp"
         android:layout_height="62dp"
         android:hint="Senha"
         android:inputType="textPassword"
+        app:passwordToggleEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/btnEntrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.518"
@@ -66,3 +72,4 @@
         app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
