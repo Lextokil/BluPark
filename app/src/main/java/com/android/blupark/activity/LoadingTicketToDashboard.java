@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.blupark.R;
 
@@ -26,6 +27,18 @@ public class LoadingTicketToDashboard extends AppCompatActivity {
                 ImageView loading = (ImageView)findViewById(R.id.blupark_loading_png);
                 animation = (AnimationDrawable)loading.getDrawable();
                 animation.start();
+                try {
+                    Intent intent = new Intent(getApplicationContext(), DashBoardActivity.class);
+                    sleep(30000);
+                    if(active){
+                        startActivity(intent);
+                        finish();
+                        Toast.makeText(LoadingTicketToDashboard.this, "Tivemos algum problema de localização tente novamente", Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         };
 
