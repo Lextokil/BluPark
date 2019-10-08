@@ -14,7 +14,7 @@
         <activity
             android:name=".activity.CadastroActivity"
             android:parentActivityName=".activity.MainActivity"
-            android:label="@string/title_Cadastro" />
+            android:label="Tela de Cadastro" />
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/title_Login"
@@ -33,7 +33,7 @@
             android:parentActivityName=".activity.DashBoardActivity" />
         <activity
             android:name=".activity.CadastroVeiculoActivity"
-            android:label="Cadatrar um veículo"
+            android:label="Cadastro de Veículos"
             android:parentActivityName=".activity.DashBoardActivity" />
         <activity
             android:name=".activity.DashBoardActivity"
